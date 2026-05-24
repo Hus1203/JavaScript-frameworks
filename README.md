@@ -1,6 +1,6 @@
 # Сайт о JavaScript-фреймворках для бэкенда
 
-🔗 **Живая версия:** https://твойлогин.github.io/js-backend-frameworks-site/index.html
+🔗 **Живая версия:** https://Hus1203.github.io/js-backend-frameworks-site/index.html
 
 ## О проекте
 Учебный сайт, созданный в рамках задания. Рассказывает о Node.js, Express, NestJS, Fastify.
