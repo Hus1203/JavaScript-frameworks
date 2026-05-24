@@ -15,4 +15,4 @@
 ## Как запустить локально
 1. Склонируй репозиторий:
    ```bash
-   git clone https://github.com/твойлогин/js-backend-frameworks-site.git
+   git clone https://github.com/Hus1203/js-backend-frameworks-site.git
