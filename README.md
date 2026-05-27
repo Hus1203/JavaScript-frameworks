@@ -19,5 +19,5 @@
    git clone https://github.com/Hus1203/JavaScript-frameworks.git
 
 
-## Небольшой комментарий
+### Небольшой комментарий
 Это учебный проект
