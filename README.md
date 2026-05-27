@@ -1,6 +1,7 @@
 # Сайт о JavaScript-фреймворках для бэкенда
 
-🔗 **Живая версия:** https://Hus1203.github.io/js-backend-frameworks-site/index.html
+🔗 **Живая версия:** https://hus1203.github.io/JavaScript-frameworks/
+
 
 ## О проекте
 Учебный сайт, созданный в рамках задания. Рассказывает о Node.js, Express, NestJS, Fastify.
@@ -15,4 +16,4 @@
 ## Как запустить локально
 1. Склонируй репозиторий:
    ```bash
-   git clone https://github.com/Hus1203/js-backend-frameworks-site.git
+   git clone https://github.com/Hus1203/JavaScript-frameworks.git

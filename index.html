@@ -1,253 +1,536 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Обзор JavaScript-фреймворков для бэкенда: Node.js, Express, NestJS, Fastify">
-    <title>JS Бэкенд фреймворки | Node.js, Express, NestJS, Fastify</title>
-    
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.24/dist/css/uikit.min.css" />
-    
-    <!-- Кастомные стили -->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JavaScript фреймворки для бэкенда: Node.js, Express, NestJS, Fastify. Сравнение, tutorials, ресурсы для разработчиков.">
+<title>JS Backend Frameworks | Node.js, Express, NestJS, Fastify</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- ==================== HEADER ==================== -->
-<header class="site-header" role="banner">
-    <div class="uk-container">
-        <div class="header-wrapper">
-            <!-- Логотип -->
-            <div class="logo">
-                <a href="index.html" aria-label="На главную">
-                    <span class="logo-icon">⚡</span>
-                    <span class="logo-text">JS Backend</span>
-                </a>
-            </div>
-
-            <!-- Десктопная навигация -->
-            <nav class="desktop-nav" aria-label="Основная навигация">
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Главная</a></li>
-                    <li><a href="nodejs.html">Node.js</a></li>
-                    <li><a href="express.html">Express</a></li>
-                    <li><a href="nestjs.html">NestJS</a></li>
-                    <li><a href="fastify.html">Fastify</a></li>
-                    <li><a href="comparison.html">Сравнение</a></li>
-                    <li><a href="videos.html">Видео</a></li>
-                    <li><a href="resources.html">Ресурсы</a></li>
-                </ul>
-            </nav>
-
-            <!-- Кнопки: тёмная тема и бургер -->
-            <div class="header-actions">
-                <button id="theme-toggle" class="theme-btn" aria-label="Переключить тёмную тему">
-                    <span class="theme-icon">🌙</span>
-                </button>
-                <button id="burger-btn" class="burger-btn" aria-label="Открыть меню" aria-expanded="false">
-                    <span class="burger-line"></span>
-                    <span class="burger-line"></span>
-                    <span class="burger-line"></span>
-                </button>
-            </div>
-        </div>
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+    <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+    <span class="logo-text">JS Backend</span>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav">
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Главная</a></li>
+        <li><a href="nodejs.html">Node.js</a></li>
+        <li><a href="express.html">Express</a></li>
+        <li><a href="nestjs.html">NestJS</a></li>
+        <li><a href="fastify.html">Fastify</a></li>
+        <li><a href="comparison.html">Сравнение</a></li>
+    </ul>
+    
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        <i class="fa-solid fa-moon"></i>
+    </button>
     </div>
-
-    <!-- Мобильное меню (бургер) -->
-    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-        <nav class="mobile-nav" aria-label="Мобильная навигация">
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="nodejs.html">Node.js</a></li>
-                <li><a href="express.html">Express</a></li>
-                <li><a href="nestjs.html">NestJS</a></li>
-                <li><a href="fastify.html">Fastify</a></li>
-                <li><a href="comparison.html">Сравнение</a></li>
-                <li><a href="videos.html">Видео</a></li>
-                <li><a href="resources.html">Ресурсы</a></li>
-                <li><a href="subscribe.html">Подписка</a></li>
-            </ul>
-        </nav>
-    </div>
+    
+    <!-- Mobile Burger Button -->
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
 </header>
 
-<!-- ==================== MAIN CONTENT ==================== -->
-<div class="uk-container main-container">
-    <div class="content-grid">
-        
-        <!-- Основной контент -->
-        <main class="main-content" role="main">
-            <!-- Hero секция -->
-            <section class="hero-section" aria-labelledby="hero-title">
-                <h1 id="hero-title">JavaScript фреймворки для бэкенда</h1>
-                <p class="hero-description">
-                    Node.js, Express, NestJS, Fastify — современные инструменты для создания 
-                    высокопроизводительных серверных приложений на JavaScript и TypeScript.
-                </p>
-                <a href="comparison.html" class="uk-button uk-button-primary cta-button">Сравнить фреймворки →</a>
-            </section>
+<!-- ==================== MOBILE MENU ==================== -->
+<div id="mobile-overlay"></div>
 
-            <!-- Карточки фреймворков (сетка Flexbox вне фреймворка) -->
-            <section class="frameworks-section" aria-labelledby="frameworks-title">
-                <h2 id="frameworks-title">Основные фреймворки</h2>
-                
-                <div class="frameworks-grid">
-                    <article class="framework-card">
-                        <div class="card-icon">🚀</div>
-                        <h3>Node.js</h3>
-                        <p>Среда выполнения JavaScript на сервере. Основа всей экосистемы.</p>
-                        <a href="nodejs.html" class="card-link">Узнать больше →</a>
-                    </article>
-
-                    <article class="framework-card">
-                        <div class="card-icon">⚡</div>
-                        <h3>Express.js</h3>
-                        <p>Самый популярный фреймворк для Node.js. Минималистичный и гибкий.</p>
-                        <a href="express.html" class="card-link">Узнать больше →</a>
-                    </article>
-
-                    <article class="framework-card">
-                        <div class="card-icon">🏗️</div>
-                        <h3>NestJS</h3>
-                        <p>Прогрессивный фреймворк на TypeScript с архитектурой Angular.</p>
-                        <a href="nestjs.html" class="card-link">Узнать больше →</a>
-                    </article>
-
-                    <article class="framework-card">
-                        <div class="card-icon">⚡</div>
-                        <h3>Fastify</h3>
-                        <p>Самый быстрый веб-фреймворк для Node.js. Отличная производительность.</p>
-                        <a href="fastify.html" class="card-link">Узнать больше →</a>
-                    </article>
-                </div>
-            </section>
-
-            <!-- Преимущества секция (с кастомными свойствами) -->
-            <section class="benefits-section" aria-labelledby="benefits-title">
-                <h2 id="benefits-title">Почему выбирают JS для бэкенда?</h2>
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <div class="benefit-number">01</div>
-                        <h3>Единый язык</h3>
-                        <p>JavaScript на фронтенде и бэкенде — унификация кода и команд.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-number">02</div>
-                        <h3>Огромная экосистема</h3>
-                        <p>npm — крупнейший реестр библиотек с миллионами пакетов.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-number">03</div>
-                        <h3>Высокая производительность</h3>
-                        <p>Асинхронная модель Node.js отлично подходит для I/O операций.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-number">04</div>
-                        <h3>TypeScript поддержка</h3>
-                        <p>Современные фреймворки имеют первоклассную поддержку TypeScript.</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Сайдбар -->
-        <aside class="sidebar" aria-label="Дополнительная информация" role="complementary">
-            <!-- Форма подписки -->
-            <div class="sidebar-widget subscribe-widget">
-                <h3>📧 Подпишись на новости</h3>
-                <p>Получай обновления о новых версиях фреймворков</p>
-                <form id="subscribe-form" class="subscribe-form" novalidate>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Ваш email" required aria-label="Email для подписки">
-                        <div class="error-message" id="email-error"></div>
-                    </div>
-                    <button type="submit" class="uk-button uk-button-primary subscribe-btn">Подписаться</button>
-                </form>
-                <p class="form-note">Без спама. Отписка в один клик.</p>
-            </div>
-
-            <!-- Популярные статьи -->
-            <div class="sidebar-widget">
-                <h3>📖 Популярные статьи</h3>
-                <ul class="popular-links">
-                    <li><a href="comparison.html">Сравнение фреймворков 2026</a></li>
-                    <li><a href="nodejs.html">Node.js vs Deno vs Bun</a></li>
-                    <li><a href="nestjs.html">Почему NestJS набирает популярность</a></li>
-                    <li><a href="fastify.html">Fastify: производительность 50k req/s</a></li>
-                </ul>
-            </div>
-
-            <!-- Теги / категории -->
-            <div class="sidebar-widget">
-                <h3>🏷️ Теги</h3>
-                <div class="tags-cloud">
-                    <a href="#">Node.js</a>
-                    <a href="#">Express</a>
-                    <a href="#">NestJS</a>
-                    <a href="#">Fastify</a>
-                    <a href="#">TypeScript</a>
-                    <a href="#">REST API</a>
-                    <a href="#">GraphQL</a>
-                </div>
-            </div>
-
-            <!-- Баннер (адаптивное изображение) -->
-            <div class="sidebar-widget banner-widget">
-                <picture>
-                    <source srcset="images/banner-web-dev.webp" type="image/webp">
-                    <source srcset="images/banner-web-dev.jpg" type="image/jpeg">
-                    <img src="images/banner-web-dev.jpg" alt="Современная веб-разработка" loading="lazy" width="300" height="250">
-                </picture>
-                <p>Изучай современный бэкенд с нами!</p>
-            </div>
-        </aside>
-    </div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+    <i class="fa-solid fa-xmark"></i>
+    </button>
 </div>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="site-footer" role="contentinfo">
+<ul class="mobile-nav-list">
+    <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li>
+    <li><a href="express.html"><i class="devicon-express-original"></i> Express</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-original"></i> NestJS</a></li>
+    <li><a href="fastify.html"><i class="devicon-fastify-plain"></i> Fastify</a></li>
+    <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Подписка</a></li>
+</ul>
+
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+    <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main>
+
+<!-- Hero Section -->
+<section class="uk-section uk-section-large hero-section" aria-labelledby="hero-heading">
     <div class="uk-container">
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h3>JS Backend</h3>
-                <p>Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Навигация</h3>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="comparison.html">Сравнение</a></li>
-                    <li><a href="videos.html">Видеоуроки</a></li>
-                    <li><a href="subscribe.html">Подписка</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Ресурсы</h3>
-                <ul>
-                    <li><a href="https://nodejs.org" target="_blank" rel="noopener">Официальный сайт Node.js</a></li>
-                    <li><a href="https://expressjs.com" target="_blank" rel="noopener">Express.js docs</a></li>
-                    <li><a href="https://nestjs.com" target="_blank" rel="noopener">NestJS docs</a></li>
-                    <li><a href="https://fastify.dev" target="_blank" rel="noopener">Fastify docs</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Контакты</h3>
-                <ul>
-                    <li>📧 info@jsbackend.ru</li>
-                    <li>🐙 GitHub: @Hus1203</li>
-                </ul>
-            </div>
+    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-1-2@m">
+        <h1 id="hero-heading" class="hero-title uk-heading-medium uk-margin-remove-bottom">
+            JavaScript фреймворки для бэкенда
+        </h1>
+        <p class="uk-text-lead uk-text-large uk-margin-medium-top uk-margin-medium-bottom">
+            Node.js, Express, NestJS, Fastify — современные инструменты для создания 
+            высокопроизводительных серверных приложений на JavaScript и TypeScript
+        </p>
+        <div class="uk-margin-large-top">
+            <a href="comparison.html" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">
+            <i class="fa-solid fa-scale-balanced uk-margin-small-right"></i>
+            Сравнить фреймворки
+            </a>
+            <a href="#frameworks" class="uk-button uk-button-default uk-button-large">
+            <i class="fa-solid fa-arrow-down uk-margin-small-right"></i>
+            Подробнее
+            </a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 JavaScript Backend Frameworks. Все права защищены.</p>
+        </div>
+        <div class="uk-width-1-2@m uk-text-center">
+        <img src="images/js.webp" 
+                alt="Схема архитектуры JavaScript бэкенд фреймворков" 
+                class="responsive-img shadow-lg"
+                width="600"
+                height="400"
+                loading="lazy">
         </div>
     </div>
+    
+    <div class="stats-grid uk-margin-large-top">
+        <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="uk-text-muted">Основные фреймворка</span>
+        </div>
+        <div class="stat-item">
+        <span class="stat-number">50k+</span>
+        <span class="uk-text-muted">Req/s производительность</span>
+        </div>
+        <div class="stat-item">
+        <span class="stat-number">1M+</span>
+        <span class="uk-text-muted">Пакетов в npm</span>
+        </div>
+        <div class="stat-item">
+        <span class="stat-number">15+</span>
+        <span class="uk-text-muted">Лет развития экосистемы</span>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Frameworks Section -->
+<section id="frameworks" class="uk-section uk-section-large uk-section-default" aria-labelledby="frameworks-heading">
+    <div class="uk-container">
+    <h2 id="frameworks-heading" class="uk-heading-bullet uk-text-center uk-margin-large-bottom">
+        Основные фреймворки
+    </h2>
+    
+    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+        
+        <article>
+        <div class="uk-card uk-card-default uk-card-body feature-card">
+            <div class="framework-icon">
+            <i class="devicon-nodejs-plain colored" style="font-size: 64px;"></i>
+            </div>
+            <h3 class="uk-card-title uk-text-center">Node.js</h3>
+            <p class="uk-text-meta uk-text-center">
+            Среда выполнения JavaScript на сервере. Основа всей экосистемы с асинхронной неблокирующей моделью I/O
+            </p>
+            <div class="uk-text-center uk-margin-top">
+            <a href="nodejs.html" class="uk-button uk-button-default uk-button-small">
+                Узнать больше <i class="fa-solid fa-arrow-right uk-margin-small-left"></i>
+            </a>
+            </div>
+        </div>
+        </article>
+
+        <article>
+        <div class="uk-card uk-card-default uk-card-body feature-card">
+            <div class="framework-icon">
+            <i class="devicon-express-original colored" style="font-size: 64px;"></i>
+            </div>
+            <h3 class="uk-card-title uk-text-center">Express.js</h3>
+            <p class="uk-text-meta uk-text-center">
+            Минималистичный и гибкий веб-фреймворк. Самый популярный выбор для создания REST API
+            </p>
+            <div class="uk-text-center uk-margin-top">
+            <a href="express.html" class="uk-button uk-button-default uk-button-small">
+                Узнать больше <i class="fa-solid fa-arrow-right uk-margin-small-left"></i>
+            </a>
+            </div>
+        </div>
+        </article>
+
+        <article>
+        <div class="uk-card uk-card-default uk-card-body feature-card">
+            <div class="framework-icon">
+            <i class="devicon-nestjs-plain colored" style="font-size: 64px;"></i>
+            </div>
+            <h3 class="uk-card-title uk-text-center">NestJS</h3>
+            <p class="uk-text-meta uk-text-center">
+            Прогрессивный фреймворк на TypeScript с архитектурой Angular. Идеален для корпоративных приложений
+            </p>
+            <div class="uk-text-center uk-margin-top">
+            <a href="nestjs.html" class="uk-button uk-button-default uk-button-small">
+                Узнать больше <i class="fa-solid fa-arrow-right uk-margin-small-left"></i>
+            </a>
+            </div>
+        </div>
+        </article>
+
+        <article>
+        <div class="uk-card uk-card-default uk-card-body feature-card">
+            <div class="framework-icon">
+            <img src="https://raw.githubusercontent.com/fastify/graphics/master/fastify-portrait.svg"></img>
+            </div>
+            <h3 class="uk-card-title uk-text-center">Fastify</h3>
+            <p class="uk-text-meta uk-text-center">
+            Самый быстрый веб-фреймворк для Node.js. Отличная производительность с минимальными накладными расходами
+            </p>
+            <div class="uk-text-center uk-margin-top">
+            <a href="fastify.html" class="uk-button uk-button-default uk-button-small">
+                Узнать больше <i class="fa-solid fa-arrow-right uk-margin-small-left"></i>
+            </a>
+            </div>
+        </div>
+        </article>
+    </div>
+    </div>
+</section>
+
+<!-- Why JS Section -->
+<section class="uk-section uk-section-large uk-section-secondary" aria-labelledby="why-js-heading">
+    <div class="uk-container">
+        <h2 id="why-js-heading" class="uk-heading-bullet uk-text-center uk-margin-large-bottom">
+            Почему выбирают JS для бэкенда?
+        </h2>
+        
+        <!-- Используем правильную структуру UIkit грида -->
+        <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+            <div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
+                    <h4>Единый язык</h4>
+                    <p class="uk-text-muted">JavaScript на фронтенде и бэкенде — унификация кода</p>
+                </div>
+            </div>
+            <div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);"><i class="fa-solid fa-boxes-stacked"></i></div>
+                    <h4>Огромная экосистема</h4>
+                    <p class="uk-text-muted">npm — крупнейший реестр библиотек</p>
+                </div>
+            </div>
+            <div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);"><i class="fa-solid fa-gauge-high"></i></div>
+                    <h4>Высокая производительность</h4>
+                    <p class="uk-text-muted">Асинхронная модель Node.js для I/O операций</p>
+                </div>
+            </div>
+            <div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);"><i class="fa-brands fa-js"></i></div>
+                    <h4>TypeScript поддержка</h4>
+                    <p class="uk-text-muted">Первоклассная поддержка TypeScript</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Comparison Table Section -->
+<section class="uk-section uk-section-large uk-section-default" aria-labelledby="comparison-heading">
+    <div class="uk-container">
+    <h2 id="comparison-heading" class="uk-heading-bullet uk-text-center uk-margin-large-bottom">
+        Сравнение характеристик
+    </h2>
+    
+    <div class="uk-overflow-auto">
+        <table class="comparison-table" role="table" aria-label="Сравнение фреймворков">
+        <thead>
+            <tr>
+            <th scope="col">Фреймворк</th>
+            <th scope="col">Производительность</th>
+            <th scope="col">Сложность</th>
+            <th scope="col">Размер</th>
+            <th scope="col">Лучше всего для</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>
+                <div class="uk-flex uk-flex-middle">
+                <i class="devicon-nodejs-plain table-icon" style="background: #339933; color: white;"></i>
+                <strong>Node.js</strong>
+                </div>
+                </td>
+            <td><span class="uk-badge uk-background-success">Высокая</span></td>
+            <td>Низкая</td>
+            <td>~30 MB</td>
+            <td>Основы, микросервисы</td>
+            </tr>
+            <tr>
+            <td>
+                <div class="uk-flex uk-flex-middle">
+                <i class="devicon-express-original table-icon" style="background: #000000; color: white;"></i>
+                <strong>Express</strong>
+                </div>
+            </td>
+            <td><span class="uk-badge uk-background-warning">Средняя</span></td>
+            <td>Низкая</td>
+            <td>~20 KB</td>
+            <td>REST API, MVP</td>
+            </tr>
+            <tr>
+            <td>
+                <div class="uk-flex uk-flex-middle">
+                <i class="devicon-nestjs-original table-icon" style="background: #e0234e; color: white;"></i>
+                <strong>NestJS</strong>
+                </div>
+            </td>
+            <td><span class="uk-badge uk-background-primary">Хорошая</span></td>
+            <td>Высокая</td>
+            <td>~2 MB</td>
+            <td>Enterprise, крупные проекты</td>
+            </tr>
+            <tr>
+            <td>
+                <div class="uk-flex uk-flex-middle">
+                <i class="devicon-fastify-plain table-icon" style="background: #000000; color: white;"></i>
+                <strong>Fastify</strong>
+                </div>
+            </td>
+            <td><span class="uk-badge uk-background-success">50k+ req/s</span></td>
+            <td>Средняя</td>
+            <td>~50 KB</td>
+            <td>Высоконагруженные API</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    
+    <div class="uk-text-center uk-margin-large-top">
+        <a href="comparison.html" class="uk-button uk-button-primary">
+        Подробное сравнение <i class="fa-solid fa-arrow-right uk-margin-small-left"></i>
+        </a>
+    </div>
+    </div>
+</section>
+
+<!-- Video Section -->
+<section class="uk-section uk-section-large uk-section-secondary" aria-labelledby="video-heading">
+    <div class="uk-container">
+    <h2 id="video-heading" class="uk-heading-bullet uk-text-center uk-margin-large-bottom">
+        Видеоуроки
+    </h2>
+    
+    <div class="uk-grid-medium uk-child-width-1-2@m" uk-grid>
+        <div>
+        <div class="video-container">
+            <iframe src="https://vkvideo.ru/video_ext.php?oid=-145052891&id=456248833&hash=5adf014932b9b23a&hd=4" width="1920" height="1080" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <h4 class="uk-margin-top">Основы JavaScript для бэкенда</h4>
+        <p class="uk-text-muted">Полный курс для начинающих разработчиков</p>
+        </div>
+        
+        <div>
+        <div class="video-container">
+            <iframe src="https://vkvideo.ru/video_ext.php?oid=-197942505&id=456239051&hash=f81652ed5eb6339a&hd=4" width="1920" height="1080" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <h4 class="uk-margin-top">Node.js с нуля</h4>
+        <p class="uk-text-muted">Изучите серверную разработку на JavaScript</p>
+        </div>
+
+         <div>
+        <div class="video-container">
+            <iframe src="https://vkvideo.ru/video_ext.php?oid=-189497044&id=456239037&hash=98553378bfa92727&hd=4" width="1920" height="1080" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <h4 class="uk-margin-top">Курс NestJS с нуля</h4>
+        <p class="uk-text-muted">Введение в NestJS для начинающих и установка</p>
+        </div>
+
+         <div>
+        <div class="video-container">
+            <iframe src="https://vkvideo.ru/video_ext.php?oid=-217952086&id=456239017&hash=a9aa224724900782&hd=4" width="1920" height="1080" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <h4 class="uk-margin-top">Установка окружения fastify</h4>
+        <p class="uk-text-muted">Настройка окружения для fastify приложения</p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Process Steps -->
+<section class="uk-section uk-section-large uk-section-default" aria-labelledby="process-heading">
+    <div class="uk-container">
+    <h2 id="process-heading" class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Как начать изучение</h2>
+    <div class="process-steps">
+        <div class="process-step"><h4>Основы JavaScript</h4><p class="uk-text-muted">Изучите синтаксис, асинхронность, замыкания и Promise</p></div>
+        <div class="process-step"><h4>Node.js базовый</h4><p class="uk-text-muted">Освойте работу с файловой системой, HTTP-модулем, npm</p></div>
+        <div class="process-step"><h4>Фреймворк</h4><p class="uk-text-muted">Выберите Express или NestJS, изучите маршрутизацию</p></div>
+        <div class="process-step"><h4>Базы данных</h4><p class="uk-text-muted">Подключите MongoDB или PostgreSQL, изучите ORM</p></div>
+    </div>
+    </div>
+</section>
+
+<!-- Subscribe Section -->
+<section class="uk-section uk-section-large uk-section-secondary" aria-labelledby="subscribe-heading">
+    <div class="uk-container uk-container-small">
+    <div class="uk-card uk-card-default uk-card-body uk-padding-large">
+        <div class="uk-text-center uk-margin-medium-bottom">
+        <div class="feature-icon uk-margin-auto" style="width: 80px; height: 80px;">
+            <i class="fa-regular fa-envelope" style="font-size: 2rem;"></i>
+        </div>
+        <h2 id="subscribe-heading" class="uk-margin-small-bottom">Подпишись на новости</h2>
+        <p class="uk-text-muted">Получай обновления о новых версиях фреймворков</p>
+        </div>
+        
+        <form id="subscribe-form" class="uk-form-stacked" novalidate>
+        <div class="uk-margin-medium-bottom">
+            <label for="email" class="uk-form-label">Ваш email</label>
+            <input id="email" class="uk-input uk-form-large" type="email" placeholder="name@company.com" required>
+            <div id="email-error" class="uk-text-danger uk-text-small uk-margin-small-top" style="min-height: 1.5em;"></div>
+        </div>
+        <div class="uk-margin-medium-bottom">
+            <label class="uk-flex uk-flex-middle">
+            <input type="checkbox" class="uk-checkbox uk-margin-small-right" required>
+            <span>Соглашаюсь на обработку персональных данных</span>
+            </label>
+        </div>
+        <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">
+            <i class="fa-solid fa-paper-plane uk-margin-small-right"></i>
+            Подписаться
+        </button>
+        </form>
+    </div>
+    </div>
+</section>
+
+<!-- Articles & Tags -->
+<section class="uk-section uk-section-large uk-section-default" aria-labelledby="articles-heading">
+    <div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        
+        <div>
+        <h3 id="articles-heading" class="uk-heading-bullet uk-margin-large-bottom">
+            <i class="fa-solid fa-book-open uk-margin-small-right"></i>
+            Популярные статьи
+        </h3>
+        <ul class="uk-list uk-list-divider">
+            <li><a href="comparison.html">Сравнение фреймворков 2026 <i class="fa-solid fa-chevron-right uk-text-muted"></i></a></li>
+            <li><a href="nodejs.html">Node.js vs Deno vs Bun <i class="fa-solid fa-chevron-right uk-text-muted"></i></a></li>
+            <li><a href="nestjs.html">Почему NestJS набирает популярность <i class="fa-solid fa-chevron-right uk-text-muted"></i></a></li>
+            <li><a href="fastify.html">Fastify: производительность 50k req/s <i class="fa-solid fa-chevron-right uk-text-muted"></i></a></li>
+        </ul>
+        </div>
+
+        <div>
+        <h3 class="uk-heading-bullet uk-margin-large-bottom">
+            <i class="fa-solid fa-tags uk-margin-small-right"></i>
+            Теги
+        </h3>
+        <div class="uk-flex uk-flex-wrap">
+            <a href="#" class="tag">Node.js</a>
+            <a href="#" class="tag">Express</a>
+            <a href="#" class="tag">NestJS</a>
+            <a href="#" class="tag">Fastify</a>
+            <a href="#" class="tag">TypeScript</a>
+            <a href="#" class="tag">REST API</a>
+            <a href="#" class="tag">GraphQL</a>
+            <a href="#" class="tag">Microservices</a>
+            <a href="#" class="tag">Docker</a>
+            <a href="#" class="tag">PostgreSQL</a>
+            <a href="#" class="tag">MongoDB</a>
+            <a href="#" class="tag">JWT</a>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+    <div>
+        <h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+        <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <div >
+            <a href="https://github.com/Hus1203" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="uk-icon-link" 
+                uk-icon="icon: github"
+                aria-label="GitHub"></a>
+            </div>
+    </div>
+    <div>
+        <h4>Навигация</h4>
+        <ul class="uk-list uk-list-bullet">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="comparison.html">Сравнение</a></li>
+        <li><a href="videos.html">Видеоуроки</a></li>
+        <li><a href="subscribe.html">Подписка</a></li>
+        </ul>
+    </div>
+    <div>
+        <h4>Ресурсы</h4>
+        <ul class="uk-list uk-list-bullet">
+        <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
+        <li><a href="https://expressjs.com" target="_blank">Express</a></li>
+        <li><a href="https://nestjs.com" target="_blank">NestJS</a></li>
+        <li><a href="https://fastify.dev" target="_blank">Fastify</a></li>
+        </ul>
+    </div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center">
+          <p class="uk-text-muted uk-text-small">
+            © 2026 JavaScript Backend Frameworks. Все права защищены.
+          </p>
+        </div>
+        <div class="uk-text-right@m uk-text-center">
+          <a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a>
+        </div>
+      </div>
+</div>
 </footer>
 
-<!-- UIkit JS -->
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.24/dist/js/uikit.min.js"></script>
-<!-- Кастомный JS -->
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

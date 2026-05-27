@@ -1,139 +1,156 @@
-// ==================== Тёмная тема ====================
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
-
-// Проверка системных настроек
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-// Загрузка сохранённой темы
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    themeIcon.textContent = '☀️';
-} else if (savedTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    themeIcon.textContent = '🌙';
-} else if (prefersDarkScheme.matches) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    themeIcon.textContent = '☀️';
-}
-
-// Переключение темы
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeIcon.textContent = '🌙';
+(function() {
+    // ==================== ТЁМНАЯ ТЕМА ====================
+    const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const root = document.documentElement;
+    
+    function updateThemeIcons(isDark) {
+        const desktopIcon = themeToggle?.querySelector('i');
+        if (desktopIcon) {
+            desktopIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+        
+        if (mobileThemeToggle) {
+            mobileThemeToggle.innerHTML = isDark ? 
+                '<i class="fa-solid fa-sun"></i> Светлая тема' : 
+                '<i class="fa-solid fa-moon"></i> Тёмная тема';
+        }
+    }
+    
+    function setTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        updateThemeIcons(theme === 'dark');
+    }
+    
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark') {
+            setTheme('dark');
+        } else if (savedTheme === 'light') {
+            setTheme('light');
+        } else if (prefersDark) {
+            setTheme('dark');
         } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeIcon.textContent = '☀️';
+            setTheme('light');
+        }
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            setTheme(isDark ? 'light' : 'dark');
+        });
+    }
+    
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', () => {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            setTheme(isDark ? 'light' : 'dark');
+        });
+    }
+    
+    // ==================== МОБИЛЬНОЕ МЕНЮ ====================
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const closeMenuBtn = document.getElementById('close-mobile-menu');
+    
+    function closeMobileMenu() {
+        if (mobileMenu) mobileMenu.classList.remove('active');
+        if (mobileOverlay) mobileOverlay.classList.remove('active');
+        if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+    }
+    
+    function openMobileMenu() {
+        if (mobileMenu) mobileMenu.classList.add('active');
+        if (mobileOverlay) mobileOverlay.classList.add('active');
+        if (burgerBtn) burgerBtn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('menu-open');
+    }
+    
+    if (burgerBtn) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+    
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+    }
+    
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
         }
     });
-}
-
-// ==================== Бургер-меню ====================
-const burgerBtn = document.getElementById('burger-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (burgerBtn && mobileMenu) {
-    burgerBtn.addEventListener('click', () => {
-        const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
-        burgerBtn.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('active');
-        mobileMenu.setAttribute('aria-hidden', !isExpanded);
-        document.body.style.overflow = !isExpanded ? 'hidden' : '';
-    });
-
-    // Закрытие меню при клике на ссылку
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            burgerBtn.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.remove('active');
-            mobileMenu.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
+    
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
-    });
-}
-
-// ==================== Валидация формы подписки ====================
-const subscribeForm = document.getElementById('subscribe-form');
-if (subscribeForm) {
-    subscribeForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    }
+    
+    // ==================== ФОРМА ПОДПИСКИ ====================
+    const subscribeForm = document.getElementById('subscribe-form');
+    if (subscribeForm) {
         const emailInput = document.getElementById('email');
         const errorDiv = document.getElementById('email-error');
-        const email = emailInput.value.trim();
-        
-        // Простая валидация email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         
-        if (!email) {
-            errorDiv.textContent = 'Пожалуйста, введите email';
-            emailInput.style.borderColor = '#ef4444';
-        } else if (!emailRegex.test(email)) {
-            errorDiv.textContent = 'Введите корректный email (пример: name@domain.com)';
-            emailInput.style.borderColor = '#ef4444';
-        } else {
-            errorDiv.textContent = '';
-            emailInput.style.borderColor = '';
-            // Имитация отправки
-            alert(`Спасибо за подписку, ${email}! Вы будете получать наши новости.`);
+        subscribeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput?.value.trim();
+            
+            if (!email) {
+                if (errorDiv) errorDiv.textContent = 'Введите email';
+                emailInput?.focus();
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                if (errorDiv) errorDiv.textContent = 'Некорректный email';
+                emailInput?.focus();
+                return;
+            }
+            
+            if (errorDiv) errorDiv.textContent = '';
+            alert('Спасибо за подписку!');
             subscribeForm.reset();
-        }
-    });
-    
-    // Очистка ошибки при вводе
-    const emailInput = document.getElementById('email');
-    if (emailInput) {
-        emailInput.addEventListener('input', () => {
-            document.getElementById('email-error').textContent = '';
-            emailInput.style.borderColor = '';
         });
-    }
-}
-
-// ==================== Плавная прокрутка для якорей ====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && href !== '#/') {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+        
+        if (emailInput) {
+            emailInput.addEventListener('input', () => {
+                if (errorDiv) errorDiv.textContent = '';
+            });
         }
-    });
-});
-
-// ==================== Ленивая загрузка изображений ====================
-// Браузеры уже поддерживают loading="lazy", но добавим Observer для старых
-if ('IntersectionObserver' in window) {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                imageObserver.unobserve(img);
+    }
+    
+    // ==================== ПЛАВНАЯ ПРОКРУТКА ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#' && href !== '#/') {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     });
     
-    lazyImages.forEach(img => imageObserver.observe(img));
-}
-
-// ==================== Клавиатурная навигация ====================
-document.addEventListener('keydown', (e) => {
-    // Закрыть мобильное меню по Escape
-    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
-        burgerBtn.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.remove('active');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-});
+    // ==================== ИНИЦИАЛИЗАЦИЯ ====================
+    initTheme();
+})();
