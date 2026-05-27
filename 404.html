@@ -1,1 +1,113 @@
-ы
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Страница не найдена | JS Backend Frameworks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Минималистичные стили только для 404 страницы */
+        .page-404-wrapper {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.04em;
+        }
+
+        .error-title {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .error-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin-bottom: var(--spacing-2xl);
+            line-height: 1.6;
+        }
+
+        .btn-404 {
+            padding: 0.85rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            background-color: var(--color-primary);
+            color: #ffffff;
+            border: 1px solid var(--color-primary);
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-404:hover {
+            background-color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: #ffffff;
+        }
+
+        .page-404-footer {
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="site-logo">
+                <span>JS</span> Backend
+            </a>
+        </div>
+    </header>
+
+    <main class="page-404-wrapper">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Страница не найдена</h1>
+        <p class="error-desc">Возможно, она была удалена, переименована или вы перешли по неверной ссылке.</p>
+        <a href="index.html" class="btn-404">
+            <span>←</span> Вернуться на главную
+        </a>
+    </main>
+
+    <footer class="page-404-footer">
+        <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">
+            © 2026 JavaScript Backend Frameworks. Все права защищены.
+        </p>
+    </footer>
+
+    <script>
+        // Синхронизация темы с основным сайтом (если используется localStorage)
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</body>
+</html>

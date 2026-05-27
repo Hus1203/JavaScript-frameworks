@@ -521,6 +521,47 @@ body.menu-open {
   background-clip: text;
 }
 
+/* Базовый стиль для всех hero-заголовков */
+.hero-title {
+  font-family: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Градиент для Node.js */
+.hero-title.nodejs {
+  background: linear-gradient(135deg, #339933 0%, #6fbf6f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Градиент для Express.js */
+.hero-title.express {
+  background: linear-gradient(135deg, #000000 0%, #444444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Градиент для NestJS */
+.hero-title.nestjs {
+  background: linear-gradient(135deg, #E0234E 0%, #ff6b8b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Градиент для Fastify */
+.hero-title.fastify {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Дополнительно: улучшенный текст в hero секции */
 .hero-section .uk-text-lead {
   font-family: 'Inter', sans-serif;
