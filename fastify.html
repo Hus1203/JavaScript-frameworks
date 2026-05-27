@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Описание и заголовок для Fastify -->
+<meta name="description" content="Полное руководство по Fastify: высокопроизводительный Node.js фреймворк с низкими накладными расходами и отличной валидацией схем.">
+<title>Fastify — Высокопроизводительный фреймворк | JS Backend Frameworks</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== HEADER (как на главной) ==================== -->
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+    <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+    <span class="logo-text">JS Backend</span>
+    </a>
+    <div class="desktop-nav">
+    <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="nodejs.html">Node.js</a></li> 
+        <li><a href="express.html">Express</a></li>
+        <li><a href="nestjs.html">NestJS</a></li>
+        <li><a href="fastify.html" class="active">Fastify</a></li>
+        <li><a href="comparison.html">Сравнение</a></li>
+        <li><a href="videos.html">Видеоуроки</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </div>
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div id="mobile-overlay"></div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+    <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+<ul class="mobile-nav-list">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li>
+    <li><a href="express.html"><i class="devicon-express-original"></i> Express</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-plain"></i> NestJS</a></li>
+    <li class="active">
+        <a href="fastify.html">
+            <!-- Светлая версия (показывается в light теме) -->
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" class="framework-logo logo-light">
+            <!-- Тёмная версия (показывается в dark теме) -->
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" class="framework-logo logo-dark">
+            Fastify
+        </a>
+    </li>
+    <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Наши соцсети</a></li>
+</ul>
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+    <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<!-- ==================== ОСНОВНОЕ СОДЕРЖАНИЕ СТРАНИЦЫ FASTIFY ==================== -->
+<main>
+
+<section class="uk-section uk-section-large hero-section" aria-labelledby="framework-hero-heading">
+    <div class="uk-container">
+    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-1-2@m">
+        <!-- Заголовок и описание Fastify -->
+        <h1 id="framework-hero-heading" class="hero-title uk-heading-medium uk-margin-remove-bottom">
+            Fastify
+        </h1>
+        <p class="uk-text-lead uk-text-large uk-margin-medium-top uk-margin-medium-bottom">
+            Высокопроизводительный веб-фреймворк для Node.js, вдохновлённый Hapi и Express. 
+            Лучший выбор для высоконагруженных API и микросервисов.
+        </p>
+        <div class="uk-margin-mid-top">
+            <a href="#quick-start" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">
+            <i class="fa-solid fa-play uk-margin-small-right"></i>
+            Быстрый старт
+            </a>
+            <a href="comparison.html" class="uk-button uk-button-default uk-button-large">
+            <i class="fa-solid fa-scale-balanced uk-margin-small-right"></i>
+            Сравнить
+            </a>
+        </div>
+        </div>
+        <div class="uk-width-1-2@m uk-text-center">
+        <!-- ========== ЛОГОТИП FASTIFY (путь можно заменить) ========== -->
+        <img src="images/fastify.webp" 
+                alt="Fastify — официальный логотип" 
+                class="responsive-img shadow-lg framework-hero-logo"
+                width="500"
+                height="400"
+                loading="lazy">
+        <!-- Альтернатива: иконка из Devicon -->
+        <!-- <i class="devicon-fastify-plain colored" style="font-size: 200px;"></i> -->
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Быстрые факты / Характеристики -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="framework-icon">
+                    <img src="https://raw.githubusercontent.com/fastify/graphics/master/fastify-portrait.svg"></img>
+                </div>
+                <h4>Версия</h4>
+                <p class="uk-text-muted">4.28.x (стабильная)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <h4>Еженедельные загрузки</h4>
+                <p class="uk-text-muted">~3.5 млн (npm)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <h4>Производительность</h4>
+                <p class="uk-text-muted">~45k req/s (один из самых быстрых)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
+                    <i class="fa-regular fa-building"></i>
+                </div>
+                <h4>Используют</h4>
+                <p class="uk-text-muted">Netflix, Uber, Future</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Описание и ключевые особенности -->
+<section class="uk-section uk-section-large">
+    <div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <h2 class="uk-heading-bullet">Что такое Fastify?</h2>
+            <p class="uk-text-lead">Fastify — это веб-фреймворк для Node.js, ориентированный на максимальную производительность, низкие накладные расходы и богатую экосистему плагинов.</p>
+            <p>Благодаря встроенной валидации JSON-схем (используя JSON Schema), быстрому парсингу и эффективной работе с асинхронностью, Fastify может обрабатывать до 2-3 раз больше запросов в секунду, чем Express.</p>
+            <p>При этом он сохраняет простоту использования, предлагая интуитивно понятный API и обширную документацию. Fastify — идеальный выбор для современных высоконагруженных проектов.</p>
+        </div>
+        <div>
+            <!-- Второе фото для иллюстрации концепции (путь можно заменить) -->
+            <img src="images/fastify architecture.png" 
+                 alt="Архитектура Fastify приложения" 
+                 class="responsive-img shadow-lg"
+                 loading="lazy">
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Ключевые особенности (список с иконками) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Ключевые особенности</h2>
+    <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
+                <h4>Молниеносная скорость</h4>
+                <p class="uk-text-muted">Один из самых быстрых Node.js фреймворков, близкий к производительности чистого http-сервера.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-check-double"></i></div>
+                <h4>Валидация схем (JSON Schema)</h4>
+                <p class="uk-text-muted">Автоматическая валидация входящих данных с помощью JSON Schema и компиляция сериализаторов.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
+                <h4>Архитектура плагинов</h4>
+                <p class="uk-text-muted">Мощная система плагинов, которая позволяет легко расширять функциональность и повторно использовать код.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-code-branch"></i></div>
+                <h4>Обработка ошибок</h4>
+                <p class="uk-text-muted">Встроенная стандартизированная обработка ошибок с поддержкой HTTP-статусов.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-regular fa-snowflake"></i></div>
+                <h4>Типизация</h4>
+                <p class="uk-text-muted">Отличная поддержка TypeScript, подробные типы и декораторы.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-database"></i></div>
+                <h4>Логирование из коробки</h4>
+                <p class="uk-text-muted">Встроенный pino-логгер с невероятной производительностью и структурированными логами.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Пример кода (Быстрый старт) -->
+<section id="quick-start" class="uk-section uk-section-large uk-section-secondary uk-preserve-color">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Быстрый старт с Fastify</h2>
+    <div class="uk-card uk-card-default uk-card-body code-example-card">
+        <h3 class="uk-card-title">Высокопроизводительный сервер с валидацией</h3>
+        <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 12px; overflow-x: auto;">
+<code style="color: var(--text-primary); font-family: 'Fira Code', monospace;">
+<span style="color: #f59e0b;">const</span> fastify = require(<span style="color: #10b981;">'fastify'</span>)({ logger: <span style="color: #f59e0b;">true</span> });
+
+<span style="color: #06b6d4;">// Схема валидации для POST /api/user</span>
+<span style="color: #f59e0b;">const</span> userSchema = {
+  schema: {
+    body: {
+      type: <span style="color: #10b981;">'object'</span>,
+      required: [<span style="color: #10b981;">'name'</span>, <span style="color: #10b981;">'email'</span>],
+      properties: {
+        name: { type: <span style="color: #10b981;">'string'</span> },
+        email: { type: <span style="color: #10b981;">'string'</span>, format: <span style="color: #10b981;">'email'</span> },
+        age: { type: <span style="color: #10b981;">'number'</span>, minimum: 18 }
+      }
+    },
+    response: {
+      201: {
+        type: <span style="color: #10b981;">'object'</span>,
+        properties: { message: { type: <span style="color: #10b981;">'string'</span> }, id: { type: <span style="color: #10b981;">'string'</span> } }
+      }
+    }
+  }
+};
+
+<span style="color: #06b6d4;">// GET маршрут</span>
+fastify.get(<span style="color: #10b981;">'/'</span>, <span style="color: #f59e0b;">async</span> (request, reply) => {
+  return { message: <span style="color: #10b981;">'Hello from Fastify!'</span> };
+});
+
+<span style="color: #06b6d4;">// POST маршрут с валидацией</span>
+fastify.post(<span style="color: #10b981;">'/api/user'</span>, userSchema, <span style="color: #f59e0b;">async</span> (request, reply) => {
+  <span style="color: #f59e0b;">const</span> { name, email } = request.body;
+  <span style="color: #06b6d4;">// Логика создания пользователя</span>
+  reply.code(201).send({ message: <span style="color: #10b981;">`User ${name} created`</span>, id: <span style="color: #10b981;">'123'</span> });
+});
+
+<span style="color: #06b6d4;">// Запуск сервера</span>
+<span style="color: #f59e0b;">const</span> start = <span style="color: #f59e0b;">async</span> () => {
+  try {
+    <span style="color: #f59e0b;">await</span> fastify.listen({ port: 3000, host: <span style="color: #10b981;">'0.0.0.0'</span> });
+    console.log(<span style="color: #10b981;">`Server listening on http://localhost:3000`</span>);
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+start();
+</code>
+        </pre>
+        <div class="uk-margin-medium-top">
+            <a href="https://fastify.dev/docs/latest/" class="uk-button uk-button-primary">Документация Fastify</a>
+            <a href="https://github.com/fastify/fastify" class="uk-button uk-button-default uk-margin-small-left"> <i class="devicon-github-original uk-margin-small-right"></i>GitHub репозиторий</a>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Преимущества и недостатки -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Плюсы и минусы</h2>
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <div class="feature-card" style="border-left: 4px solid #10b981;">
+                <h3><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Преимущества</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>⚡ <strong>Высокая производительность</strong> — один из самых быстрых Node.js фреймворков</li>
+                    <li>🧩 <strong>Плагинная архитектура</strong> — легко расширять и переиспользовать модули</li>
+                    <li>📏 <strong>Встроенная валидация</strong> — JSON Schema обеспечивает надёжность и скорость</li>
+                    <li>📝 <strong>Отличное логирование</strong> — pino логгер с минимальным оверхедом</li>
+                    <li>🔒 <strong>TypeScript ready</strong> — полная поддержка типов с первых дней</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card" style="border-left: 4px solid #ef4444;">
+                <h3><i class="fa-solid fa-circle-exclamation" style="color: #ef4444;"></i> Недостатки</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>📚 <strong>Меньше сообщество</strong> — чем у Express, но активно растёт</li>
+                    <li>🔄 <strong>Кривая обучения</strong> — плагины и схемы требуют привыкания</li>
+                    <li>🚧 <strong>Меньше готовых middleware</strong> — из-за философии плагинов всё нужно искать/писать под Fastify</li>
+                    <li>💡 <strong>Не так прост для абсолютных новичков</strong> — требует понимания схем и асинхронности</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Часто задаваемые вопросы (FAQ) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Часто задаваемые вопросы</h2>
+    <div uk-accordion>
+        <div>
+            <a class="uk-accordion-title" href="#">Насколько Fastify быстрее Express?</a>
+            <div class="uk-accordion-content">
+                <p>Согласно многим бенчмаркам, Fastify может обрабатывать от 2 до 3 раз больше запросов в секунду по сравнению с Express, при этом потребляя меньше памяти. Это достигается за счёт оптимизированного парсинга, встроенной валидации схем и асинхронного подхода без лишних абстракций.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Стоит ли мигрировать с Express на Fastify?</a>
+            <div class="uk-accordion-content">
+                <p>Если производительность и масштабируемость являются критичными для вашего проекта — определённо да. Fastify предлагает схожий API, но с лучшей производительностью. Однако для небольших проектов или прототипов миграция может быть неоправданной.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Как расширить Fastify с помощью плагинов?</a>
+            <div class="uk-accordion-content">
+                <p>Fastify имеет богатую экосистему официальных и сторонних плагинов. Чтобы зарегистрировать плагин, используйте <code>fastify.register(plugin, options)</code>. Плагины могут добавлять маршруты, декораторы, хуки и всё что угодно.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+        <div>
+            <h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+            <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <a href="https://github.com/Hus1203" target="_blank" rel="noopener noreferrer" class="uk-icon-link" uk-icon="icon: github" aria-label="GitHub"></a>
+        </div>
+        <div>
+            <h4>Навигация</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="comparison.html">Сравнение</a></li>
+                <li><a href="videos.html">Видеоуроки</a></li>
+                <li><a href="subscribe.html">Наши соцсети</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Ресурсы</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
+                <li><a href="https://expressjs.com" target="_blank">Express</a></li>
+                <li><a href="https://nestjs.com" target="_blank">NestJS</a></li>
+                <li><a href="https://fastify.dev" target="_blank">Fastify</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center">
+            <p class="uk-text-muted uk-text-small">© 2026 JavaScript Backend Frameworks. Все права защищены.</p>
+        </div>
+        <div class="uk-text-right@m uk-text-center">
+            <a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

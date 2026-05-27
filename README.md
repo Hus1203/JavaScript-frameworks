@@ -17,3 +17,7 @@
 1. Склонируй репозиторий:
    ```bash
    git clone https://github.com/Hus1203/JavaScript-frameworks.git
+
+
+## Небольшой комментарий
+Это учебный проект

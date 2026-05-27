@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Описание и заголовок для Node.js -->
+<meta name="description" content="Полное руководство по Node.js: асинхронная среда выполнения JavaScript на сервере, событийно-ориентированная архитектура и экосистема npm.">
+<title>Node.js — Среда выполнения JavaScript | JS Backend Frameworks</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== HEADER (как на главной) ==================== -->
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+    <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+    <span class="logo-text">JS Backend</span>
+    </a>
+    <div class="desktop-nav">
+    <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="nodejs.html" class="active">Node.js</a></li> 
+        <li><a href="express.html">Express</a></li>
+        <li><a href="nestjs.html">NestJS</a></li>
+        <li><a href="fastify.html">Fastify</a></li>
+        <li><a href="comparison.html">Сравнение</a></li>
+        <li><a href="videos.html">Видеоуроки</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </div>
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div id="mobile-overlay"></div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+    <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+<ul class="mobile-nav-list">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li class="active"><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li>
+    <li><a href="express.html"><i class="devicon-express-original"></i> Express</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-plain"></i> NestJS</a></li>
+    <li>
+        <a href="fastify.html">
+            <!-- Светлая версия (показывается в light теме) -->
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" class="framework-logo logo-light">
+            <!-- Тёмная версия (показывается в dark теме) -->
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" class="framework-logo logo-dark">
+            Fastify
+        </a>
+    </li>
+    <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Наши соцсети</a></li>
+</ul>
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+    <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<!-- ==================== ОСНОВНОЕ СОДЕРЖАНИЕ СТРАНИЦЫ NODE.JS ==================== -->
+<main>
+
+<section class="uk-section uk-section-large hero-section" aria-labelledby="framework-hero-heading">
+    <div class="uk-container">
+    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-1-2@m">
+        <!-- Заголовок и описание Node.js -->
+        <h1 id="framework-hero-heading" class="hero-title uk-heading-medium uk-margin-remove-bottom">
+            Node.js
+        </h1>
+        <p class="uk-text-lead uk-text-large uk-margin-medium-top uk-margin-medium-bottom">
+            Асинхронная событийно-ориентированная среда выполнения JavaScript на сервере. 
+            Быстрая, масштабируемая и самая популярная платформа для backend-разработки.
+        </p>
+        <div class="uk-margin-mid-top">
+            <a href="#quick-start" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">
+            <i class="fa-solid fa-play uk-margin-small-right"></i>
+            Быстрый старт
+            </a>
+            <a href="comparison.html" class="uk-button uk-button-default uk-button-large">
+            <i class="fa-solid fa-scale-balanced uk-margin-small-right"></i>
+            Сравнить
+            </a>
+        </div>
+        </div>
+        <div class="uk-width-1-2@m uk-text-center">
+            <!-- Светлая тема (по умолчанию) -->
+            <img src="images/nodejsStackedDark.svg" 
+                    alt="Node.js — официальный логотип" 
+                    class="responsive-img shadow-lg framework-hero-logo logo-light"
+                    width="500"
+                    height="400"
+                    loading="lazy">
+            <!-- Тёмная тема -->
+            <img src="images/nodejsStackedLight.svg" 
+                    alt="Node.js — официальный логотип" 
+                    class="responsive-img shadow-lg framework-hero-logo logo-dark"
+                    width="500"
+                    height="400"
+                    loading="lazy">
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Быстрые факты / Характеристики -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="framework-icon">
+                    <i class="devicon-nodejs-plain colored" style="font-size: 80px;"></i>
+                </div>
+                <h4>Версия</h4>
+                <p class="uk-text-muted">22.x LTS / 23.x Current</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <h4>npm пакетов</h4>
+                <p class="uk-text-muted">более 2 млн</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <h4>Архитектура</h4>
+                <p class="uk-text-muted">Event Loop, non-blocking I/O</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
+                    <i class="fa-regular fa-building"></i>
+                </div>
+                <h4>Используют</h4>
+                <p class="uk-text-muted">Netflix, LinkedIn, PayPal</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Описание и ключевые особенности -->
+<section class="uk-section uk-section-large">
+    <div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <h2 class="uk-heading-bullet">Что такое Node.js?</h2>
+            <p class="uk-text-lead">Node.js — это кроссплатформенная среда выполнения JavaScript с открытым исходным кодом, построенная на движке V8 от Google Chrome.</p>
+            <p>Она позволяет выполнять JavaScript вне браузера, на сервере, что делает возможным создание бэкенд-приложений, утилит командной строки, десктопных приложений и даже встраиваемых систем.</p>
+            <p>Ключевая особенность Node.js — асинхронная, событийно-ориентированная архитектура с неблокирующим вводом-выводом, что обеспечивает высокую производительность и масштабируемость для приложений реального времени.</p>
+        </div>
+        <div>
+            <!-- Второе фото для иллюстрации концепции (путь можно заменить) -->
+            <img src="images/nodejs architecture 1.webp" 
+                 alt="Архитектура Node.js — Event Loop" 
+                 class="responsive-img shadow-lg"
+                 loading="lazy">
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Ключевые особенности (список с иконками) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Ключевые особенности</h2>
+    <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-infinity"></i></div>
+                <h4>Асинхронность и Event Loop</h4>
+                <p class="uk-text-muted">Неблокирующий ввод-вывод позволяет обрабатывать тысячи одновременных соединений в одном потоке.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-brands fa-npm"></i></div>
+                <h4>Экосистема npm</h4>
+                <p class="uk-text-muted">Крупнейший репозиторий пакетов с миллионами решений для любых задач — от фреймворков до CLI-утилит.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-brands fa-js"></i></div>
+                <h4>JavaScript везде</h4>
+                <p class="uk-text-muted">Один язык для клиента и сервера — проще обмен данными и переиспользование кода.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h4>V8 движок</h4>
+                <p class="uk-text-muted">Быстрая компиляция JS в машинный код, JIT-оптимизации и низкое потребление памяти.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-code-branch"></i></div>
+                <h4>Стриминг данных</h4>
+                <p class="uk-text-muted">Встроенные потоки (Streams) для обработки больших объёмов данных без перегрузки памяти.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-gears"></i></div>
+                <h4>Кроссплатформенность</h4>
+                <p class="uk-text-muted">Одна кодовая база для Windows, Linux и macOS — без дополнительных доработок.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Пример кода (Быстрый старт) -->
+<section id="quick-start" class="uk-section uk-section-large uk-section-secondary uk-preserve-color">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Быстрый старт с Node.js</h2>
+    <div class="uk-card uk-card-default uk-card-body code-example-card">
+        <h3 class="uk-card-title">Создаём простой HTTP-сервер без фреймворков</h3>
+        <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 12px; overflow-x: auto;">
+<code style="color: var(--text-primary); font-family: 'Fira Code', monospace;">
+<span style="color: #06b6d4;">// server.js</span>
+<span style="color: #f59e0b;">const</span> http = require(<span style="color: #10b981;">'node:http'</span>);
+
+<span style="color: #f59e0b;">const</span> server = http.createServer((req, res) =&gt; {
+  <span style="color: #f59e0b;">const</span> { method, url } = req;
+  
+  <span style="color: #06b6d4;">// Устанавливаем заголовки</span>
+  res.setHeader(<span style="color: #10b981;">'Content-Type'</span>, <span style="color: #10b981;">'application/json'</span>);
+  
+  <span style="color: #06b6d4;">// Простая маршрутизация</span>
+  <span style="color: #f59e0b;">if</span> (url === <span style="color: #10b981;">'/'</span> && method === <span style="color: #10b981;">'GET'</span>) {
+    res.statusCode = 200;
+    res.end(JSON.stringify({ message: <span style="color: #10b981;">'Hello from Node.js!'</span> }));
+  } 
+  <span style="color: #f59e0b;">else if</span> (url === <span style="color: #10b981;">'/api/data'</span> && method === <span style="color: #10b981;">'POST'</span>) {
+    <span style="color: #f59e0b;">let</span> body = <span style="color: #10b981;">''</span>;
+    req.on(<span style="color: #10b981;">'data'</span>, chunk =&gt; { body += chunk; });
+    req.on(<span style="color: #10b981;">'end'</span>, () =&gt; {
+      <span style="color: #f59e0b;">const</span> parsed = JSON.parse(body);
+      res.statusCode = 201;
+      res.end(JSON.stringify({ received: parsed }));
+    });
+  } 
+  <span style="color: #f59e0b;">else</span> {
+    res.statusCode = 404;
+    res.end(JSON.stringify({ error: <span style="color: #10b981;">'Not Found'</span> }));
+  }
+});
+
+<span style="color: #f59e0b;">const</span> PORT = process.env.PORT || 3000;
+server.listen(PORT, () =&gt; {
+  console.log(<span style="color: #10b981;">`Server running at http://localhost:${PORT}/`</span>);
+});
+</code>
+        </pre>
+        <div class="uk-margin-medium-top">
+            <a href="https://nodejs.org/api/" class="uk-button uk-button-primary">Документация Node.js API</a>
+            <a href="https://github.com/nodejs/node" class="uk-button uk-button-default uk-margin-small-left"> <i class="devicon-github-original uk-margin-small-right"></i>GitHub репозиторий</a>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Преимущества и недостатки -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Плюсы и минусы</h2>
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <div class="feature-card" style="border-left: 4px solid #10b981;">
+                <h3><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Преимущества</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>⚡ <strong>Высокая производительность</strong> — неблокирующий I/O, идеален для I/O-bound приложений</li>
+                    <li>📦 <strong>Огромная экосистема</strong> — миллионы пакетов npm на любой вкус</li>
+                    <li>🧠 <strong>Один язык</strong> — JavaScript на клиенте и сервере</li>
+                    <li>🚀 <strong>Активное сообщество</strong> — постоянные обновления, поддержка и огромное количество туториалов</li>
+                    <li>🔄 <strong>Событийная модель</strong> — легко масштабировать чаты, игры, стриминговые сервисы</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card" style="border-left: 4px solid #ef4444;">
+                <h3><i class="fa-solid fa-circle-exclamation" style="color: #ef4444;"></i> Недостатки</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>🧵 <strong>Ограничения для CPU-bound задач</strong> — тяжёлые вычисления блокируют Event Loop</li>
+                    <li>📚 <strong>Callback Hell (исторически)</strong> — требует дисциплины (Promises/async-await решают)</li>
+                    <li>🔧 <strong>Слабая типизация</strong> — TypeScript не встроен, требуется отдельная настройка</li>
+                    <li>⚖️ <strong>Не всегда подходит для high-load CPU</strong> — для сложных расчётов нужны worker threads</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Часто задаваемые вопросы (FAQ) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Часто задаваемые вопросы</h2>
+    <div uk-accordion>
+        <div>
+            <a class="uk-accordion-title" href="#">Чем Node.js отличается от других бэкенд-технологий (Python, PHP)?</a>
+            <div class="uk-accordion-content">
+                <p>Главное отличие — асинхронная, неблокирующая модель ввода-вывода. В то время как традиционные серверы создают новый поток на каждое подключение, Node.js использует один поток и событийный цикл, что позволяет обрабатывать десятки тысяч соединений с меньшими накладными расходами.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Можно ли использовать Node.js для тяжёлых вычислений?</a>
+            <div class="uk-accordion-content">
+                <p>Да, с помощью Worker Threads или дочерних процессов. Node.js позволяет создавать изолированные потоки для CPU-интенсивных задач, не блокируя основной Event Loop. Также можно выносить вычисления в микросервисы на других языках.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Что такое npm и зачем он нужен?</a>
+            <div class="uk-accordion-content">
+                <p>npm (Node Package Manager) — стандартный менеджер пакетов для Node.js. С его помощью можно устанавливать, обновлять и удалять библиотеки и инструменты. Это крупнейший реестр программного обеспечения, содержащий более 2 миллионов пакетов.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Стоит ли изучать Node.js в 2026 году?</a>
+            <div class="uk-accordion-content">
+                <p>Безусловно! Node.js остаётся одной из самых востребованных технологий на рынке вакансий, активно развивается, имеет огромное сообщество и постоянно выходят новые инструменты на его основе (Bun, Deno и др.).</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+        <div>
+            <h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+            <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <a href="https://github.com/Hus1203" target="_blank" rel="noopener noreferrer" class="uk-icon-link" uk-icon="icon: github" aria-label="GitHub"></a>
+        </div>
+        <div>
+            <h4>Навигация</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="comparison.html">Сравнение</a></li>
+                <li><a href="videos.html">Видеоуроки</a></li>
+                <li><a href="subscribe.html">Наши соцсети</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Ресурсы</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
+                <li><a href="https://expressjs.com" target="_blank">Express</a></li>
+                <li><a href="https://nestjs.com" target="_blank">NestJS</a></li>
+                <li><a href="https://fastify.dev" target="_blank">Fastify</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center">
+            <p class="uk-text-muted uk-text-small">© 2026 JavaScript Backend Frameworks. Все права защищены.</p>
+        </div>
+        <div class="uk-text-right@m uk-text-center">
+            <a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

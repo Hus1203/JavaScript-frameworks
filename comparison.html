@@ -1,1 +1,659 @@
-###Сравнение
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Детальное сравнение бэкенд фреймворков Node.js, Express, NestJS и Fastify: производительность, скорость разработки, популярность, примеры кода и архитектура.">
+<title>Сравнение фреймворков | Node.js vs Express vs NestJS vs Fastify</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Chart.js для графиков -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Дополнительные стили для страницы сравнения -->
+<style>
+.comparison-hero-icon {
+    font-size: 80px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.performance-bar {
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: var(--radius-full);
+    height: 8px;
+    transition: width 0.5s ease;
+}
+.comparison-card {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.comparison-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+.code-comparison pre {
+    margin: 0;
+    font-size: 0.8rem;
+}
+.code-comparison .uk-card-header {
+    border-bottom: 1px solid var(--border-color);
+}
+.framework-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.badge-node { background: #33993320; color: #339933; }
+.badge-express { background: #00000020; color: var(--text-primary); }
+.badge-nest { background: #E0234E20; color: #E0234E; }
+.badge-fastify { background: #00000020; color: #000000; }
+[data-theme="dark"] .badge-express { background: #ffffff20; color: #ffffff; }
+[data-theme="dark"] .badge-fastify { background: #ffffff20; color: #ffffff; }
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+    <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+    <span class="logo-text">JS Backend</span>
+    </a>
+    <div class="desktop-nav">
+    <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="nodejs.html">Node.js</a></li>
+        <li><a href="express.html">Express</a></li>
+        <li><a href="nestjs.html">NestJS</a></li>
+        <li><a href="fastify.html">Fastify</a></li>
+        <li><a href="comparison.html" class="active">Сравнение</a></li>
+        <li><a href="videos.html">Видеоуроки</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </div>
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div id="mobile-overlay"></div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+    <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+<ul class="mobile-nav-list">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li>
+    <li><a href="express.html"><i class="devicon-express-original"></i> Express</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-plain"></i> NestJS</a></li>
+    <li>
+        <a href="fastify.html">
+            <!-- Светлая версия (показывается в light теме) -->
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" class="framework-logo logo-light">
+            <!-- Тёмная версия (показывается в dark теме) -->
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" class="framework-logo logo-dark">
+            Fastify
+        </a>
+    </li>
+    <li class="active"><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Подписка</a></li>
+</ul>
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+    <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<main>
+
+<!-- Hero Section -->
+<section class="uk-section uk-section-large hero-section" aria-labelledby="comparison-hero">
+    <div class="uk-container">
+    <div class="uk-text-center">
+        <h1 id="comparison-hero" class="hero-title uk-heading-medium uk-margin-small-top">Сравнение фреймворков</h1>
+        <p class="uk-text-lead uk-width-2-3@m uk-margin-auto">
+            Детальный анализ Node.js, Express, NestJS и Fastify: производительность, архитектура, скорость разработки и лучшие практики использования.
+        </p>
+    </div>
+    </div>
+</section>
+
+<!-- Основная таблица сравнения -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Детальное сравнение характеристик</h2>
+    
+    <div class="uk-overflow-auto">
+        <table class="comparison-table" style="min-width: 800px;">
+        <thead>
+            <tr>
+                <th scope="col">Характеристика</th>
+                <th scope="col">Node.js (ядро)</th>
+                <th scope="col">Express</th>
+                <th scope="col">NestJS</th>
+                <th scope="col">Fastify</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Тип</strong></td><td>Среда выполнения</td><td>Веб-фреймворк</td><td>Прогрессивный фреймворк</td><td>Веб-фреймворк</td></tr>
+            <tr><td><strong>Производительность (req/s)</strong></td><td>~30 000</td><td>~15 000</td><td>~20 000 (с Fastify адаптером)</td><td>~45 000</td></tr>
+            <tr><td><strong>Вес (production)</strong></td><td>~30 MB</td><td>~20 KB</td><td>~2 MB</td><td>~50 KB</td></tr>
+            <tr><td><strong>TypeScript поддержка</strong></td><td>⚠️ Требует настройки</td><td>⚠️ Требует настройки</td><td>✅ Из коробки</td><td>✅ Отличная</td></tr>
+            <tr><td><strong>Внедрение зависимостей</strong></td><td>❌ Нет</td><td>❌ Нет</td><td>✅ Встроенный DI</td><td>⚠️ Через плагины</td></tr>
+            <tr><td><strong>Структура проекта</strong></td><td>Свободная</td><td>Свободная</td><td>Модульная</td><td>Свободная (плагины)</td></tr>
+            <tr><td><strong>Валидация схем</strong></td><td>❌ Нет</td><td>⚠️ Через middleware</td><td>✅ Class-validator</td><td>✅ JSON Schema</td></tr>
+            <tr><td><strong>WebSockets</strong></td><td>⚠️ Вручную</td><td>⚠️ Socket.io</td><td>✅ Встроенный Gateway</td><td>⚠️ Через плагин</td></tr>
+            <tr><td><strong>GraphQL</strong></td><td>⚠️ Apollo Server</td><td>⚠️ Apollo Server</td><td>✅ @nestjs/graphql</td><td>⚠️ mercurius</td></tr>
+            <tr><td><strong>Микросервисы</strong></td><td>⚠️ Вручную</td><td>⚠️ Вручную</td><td>✅ Встроенная поддержка</td><td>⚠️ Через плагины</td></tr>
+            <tr><td><strong>Популярность (npm загрузки/неделя)</strong></td><td>—</td><td>~20 млн</td><td>~2.5 млн</td><td>~3.5 млн</td></tr>
+            <tr><td><strong>GitHub звёзды</strong></td><td>~105k</td><td>~64k</td><td>~65k</td><td>~31k</td></tr>
+            <tr><td><strong>Порог входа</strong></td><td>Низкий</td><td>Низкий</td><td>Высокий</td><td>Средний</td></tr>
+            <tr><td><strong>Лучше всего для</strong></td><td>CLI, утилиты, основы</td><td>REST API, MVP, прототипы</td><td>Enterprise, крупные проекты</td><td>High-load API, микросервисы</td></tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+</section>
+
+<!-- Альтернативный вариант: графики друг под другом по центру -->
+<section class="uk-section uk-section-secondary">
+    <div class="uk-container uk-container-small">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Производительность (req/s)</h2>
+    
+    <div class="uk-text-center">
+        <div class="uk-card uk-card-default uk-card-body uk-margin-medium">
+            <canvas id="performanceChart" width="600" height="300" style="max-width: 100%; height: auto; margin: 0 auto;"></canvas>
+            <p class="uk-text-muted uk-margin-small-top">Пропускная способность (тыс. req/s)</p>
+        </div>
+        
+        <div class="uk-card uk-card-default uk-card-body">
+            <canvas id="latencyChart" width="600" height="300" style="max-width: 100%; height: auto; margin: 0 auto;"></canvas>
+            <p class="uk-text-muted uk-margin-small-top">Задержка ответа (мс) — чем меньше, тем лучше</p>
+        </div>
+    </div>
+    
+    <div class="uk-text-center uk-margin-medium-top">
+        <p class="uk-text-muted"><i class="fa-solid fa-chart-line"></i> Данные основаны на независимых бенчмарках (TechEmpower, 2025)</p>
+    </div>
+    </div>
+</section>
+
+<!-- Карточки-резюме -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Краткое резюме</h2>
+    <div class="uk-grid-medium uk-child-width-1-1@s uk-child-width-1-4@m" uk-grid>
+        <div>
+            <div class="comparison-card feature-card uk-text-center uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-flex-1">
+                    <i class="devicon-nodejs-plain colored" style="font-size: 48px;"></i>
+                    <h3 class="uk-margin-small-top">Node.js</h3>
+                    <div class="uk-badge uk-background-secondary">Фундамент</div>
+                    <p class="uk-margin-top">Отличный выбор для микросервисов, CLI-инструментов и если нужен полный контроль. Стабильность и огромное сообщество.</p>
+                </div>
+                <div class="uk-margin-top" style="margin-top: auto !important;">
+                    <div class="performance-bar" style="width: 65%;"></div>
+                    <p class="uk-text-small uk-text-muted uk-margin-small-top">Производительность: 65%</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="comparison-card feature-card uk-text-center uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-flex-1">
+                    <i class="devicon-express-original colored" style="font-size: 48px;"></i>
+                    <h3 class="uk-margin-small-top">Express</h3>
+                    <div class="uk-badge uk-background-primary">Стандарт индустрии</div>
+                    <p class="uk-margin-top">Лучший для быстрого старта и небольших проектов. Огромная экосистема middleware. Простота и гибкость.</p>
+                </div>
+                <div class="uk-margin-top" style="margin-top: auto !important;">
+                    <div class="performance-bar" style="width: 45%; background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);"></div>
+                    <p class="uk-text-small uk-text-muted uk-margin-small-top">Производительность: 45%</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="comparison-card feature-card uk-text-center uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-flex-1">
+                    <i class="devicon-nestjs-plain colored" style="font-size: 48px;"></i>
+                    <h3 class="uk-margin-small-top">NestJS</h3>
+                    <div class="uk-badge uk-background-danger">корпоративный</div>
+                    <p class="uk-margin-top">Идеален для крупных проектов с командой. Архитектура Angular, отличная типизация и масштабируемость.</p>
+                </div>
+                <div class="uk-margin-top" style="margin-top: auto !important;">
+                    <div class="performance-bar" style="width: 55%; background: linear-gradient(90deg, #E0234E 0%, #ff6380 100%);"></div>
+                    <p class="uk-text-small uk-text-muted uk-margin-small-top">Производительность: 55%</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="comparison-card feature-card uk-text-center uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-flex-1">
+                    <div class="framework-icon" style="background: none; box-shadow: none; margin-bottom: -10px;">
+                        <img src="https://raw.githubusercontent.com/fastify/graphics/master/fastify-portrait.svg" 
+                             alt="Fastify Logo" 
+                             style="width: 64px; height: 64px; object-fit: contain;">
+                    </div>
+                    <h3 class="uk-margin-small-top">Fastify</h3>
+                    <div class="uk-badge uk-background-success">Скорость</div>
+                    <p class="uk-margin-top">Чемпион по производительности. Встроенная валидация, низкое потребление памяти, отличная документация.</p>
+                </div>
+                <div class="uk-margin-top" style="margin-top: auto !important;">
+                    <div class="performance-bar" style="width: 100%; background: linear-gradient(90deg, #10b981 0%, #34d399 100%);"></div>
+                    <p class="uk-text-small uk-text-muted uk-margin-small-top">Производительность: 100%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Сравнение кода -->
+<section class="uk-section uk-section-secondary">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Сравнение кода: простой API</h2>
+    <div class="uk-grid-medium uk-child-width-1-2@m code-comparison" uk-grid>
+        <div>
+            <div class="uk-card uk-card-default uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-card-header uk-text-center">
+                    <div class="uk-flex uk-flex-column uk-flex-middle">
+                        <i class="devicon-express-original colored" style="font-size: 48px;"></i>
+                        <h3 class="uk-card-title uk-margin-small-top">Express.js</h3>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-flex-1">
+                    <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; overflow-x: auto; height: 100%;"><code style="font-size: 12px;">
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello World' });
+});
+
+app.post('/users', (req, res) => {
+  const { name, email } = req.body;
+  res.status(201).json({ id: 1, name, email });
+});
+
+app.listen(3000);
+                    </code></pre>
+                </div>
+                <div class="uk-card-footer uk-text-center">
+                    <span class="framework-badge badge-express"><i class="fa-solid fa-tachograph-digital"></i> ~15k req/s</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-card-header uk-text-center">
+                    <div class="uk-flex uk-flex-column uk-flex-middle">
+                        <i class="devicon-nestjs-plain colored" style="font-size: 48px;"></i>
+                        <h3 class="uk-card-title uk-margin-small-top">NestJS</h3>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-flex-1">
+                    <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; overflow-x: auto; height: 100%;"><code style="font-size: 12px;">
+// user.dto.ts
+export class CreateUserDto {
+  name: string;
+  email: string;
+}
+
+// users.controller.ts
+@Controller('users')
+export class UsersController {
+  @Post()
+  create(@Body() dto: CreateUserDto) {
+    return { id: 1, ...dto };
+  }
+}
+
+// main.ts
+const app = await NestFactory.create(AppModule);
+await app.listen(3000);
+                    </code></pre>
+                </div>
+                <div class="uk-card-footer uk-text-center">
+                    <span class="framework-badge badge-nest"><i class="fa-solid fa-chart-line"></i> ~20k req/s*</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-card-header uk-text-center">
+                        <div class="uk-flex uk-flex-column uk-flex-middle">
+                            <div class="uk-flex uk-flex-middle" >
+                                <img src="https://raw.githubusercontent.com/fastify/graphics/master/fastify-portrait.svg" 
+                                    alt="Fastify Logo" 
+                                    style="width: 45px; height: 45px; object-fit: contain;">
+                            </div>
+                        <h3 class="uk-card-title uk-margin-small-top">Fastify</h3>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-flex-1">
+                    <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; overflow-x: auto; height: 100%;"><code style="font-size: 12px;">
+const fastify = require('fastify')({logger: true});
+
+fastify.get('/', async () => {
+  return { message: 'Hello World' };
+});
+
+fastify.post('/users', {
+  schema: {
+    body: {
+      type: 'object',
+      required: ['name', 'email'],
+      properties: {
+        name: { type: 'string' },
+        email: { type: 'string', format: 'email' }
+      }
+    }
+  }
+}, async (request, reply) => {
+  return { id: 1, ...request.body };
+});
+
+fastify.listen({ port: 3000 });
+                    </code></pre>
+                </div>
+                <div class="uk-card-footer uk-text-center">
+                    <span class="framework-badge badge-fastify"><i class="fa-solid fa-rocket"></i> ~45k req/s</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-flex uk-flex-column" style="height: 100%;">
+                <div class="uk-card-header uk-text-center">
+                    <div class="uk-flex uk-flex-column uk-flex-middle">
+                        <i class="devicon-nodejs-plain colored" style="font-size: 48px;"></i>
+                        <h3 class="uk-card-title uk-margin-small-top">Node.js (Native)</h3>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-flex-1">
+                    <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; overflow-x: auto; height: 100%;"><code style="font-size: 12px;">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  
+  if (req.method === 'GET' && req.url === '/') {
+    res.end(JSON.stringify({ message: 'Hello World' }));
+  } else if (req.method === 'POST' && req.url === '/users') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      const data = JSON.parse(body);
+      res.end(JSON.stringify({ id: 1, ...data }));
+    });
+  } else {
+    res.statusCode = 404;
+    res.end(JSON.stringify({ error: 'Not Found' }));
+  }
+});
+
+server.listen(3000);
+                    </code></pre>
+                </div>
+                <div class="uk-card-footer uk-text-center">
+                    <span class="framework-badge badge-node"><i class="fa-solid fa-microchip"></i> ~30k req/s</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<!-- Дорожная карта выбора фреймворка -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Какой фреймворк выбрать?</h2>
+    <div class="uk-grid-medium uk-child-width-1-1@m" uk-grid>
+        <div class="uk-card uk-card-default uk-card-body">
+            <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+                <div>
+                    <div class="uk-text-center">
+                        <div class="feature-icon uk-margin-auto" style="width: 50px; height: 50px;"><i class="fa-solid fa-rocket"></i></div>
+                        <h4>Максимальная скорость</h4>
+                        <p class="uk-text-small"> <strong>Fastify</strong> — лучший для high-load</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-text-center">
+                        <div class="feature-icon uk-margin-auto" style="width: 50px; height: 50px;"><i class="fa-solid fa-users"></i></div>
+                        <h4>Крупная команда</h4>
+                        <p class="uk-text-small"> <strong>NestJS</strong> — структура и стандарты</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-text-center">
+                        <div class="feature-icon uk-margin-auto" style="width: 50px; height: 50px;"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h4>Начинающим</h4>
+                        <p class="uk-text-small"> <strong>Express</strong> — простота и сообщество</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-text-center">
+                        <div class="feature-icon uk-margin-auto" style="width: 50px; height: 50px;"><i class="fa-solid fa-microchip"></i></div>
+                        <h4>Микроконтроллеры/CLI</h4>
+                        <p class="uk-text-small"> <strong>Node.js</strong> — чистый JS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Сравнение экосистемы -->
+<section class="uk-section uk-section-secondary uk-preserve-color">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Экосистема и плагины</h2>
+    <div class="uk-grid-medium uk-child-width-1-4@m uk-child-width-1-2@s" uk-grid>
+        <div>
+            <div class="feature-card">
+                <i class="devicon-express-original colored" style="font-size: 32px;"></i>
+                <h4>Express</h4>
+                <ul class="uk-list uk-list-divider uk-text-small">
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> <strong>1000+</strong> middleware</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> body-parser, cors, morgan</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> passport (auth)</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> mongoose, sequelize</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <i class="devicon-nestjs-plain colored" style="font-size: 32px;"></i>
+                <h4>NestJS</h4>
+                <ul class="uk-list uk-list-divider uk-text-small">
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> <strong>500+</strong> официальных модулей</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> GraphQL, WebSockets</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> TypeORM, Prisma, Mongoose</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> CQRS, микросервисы</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="uk-flex uk-flex-middle" >
+                                <img src="https://raw.githubusercontent.com/fastify/graphics/master/fastify-portrait.svg" 
+                                    alt="Fastify Logo" 
+                                    style="width: 32px; height: 32px; object-fit: contain;">
+                            </div>
+                <h4>Fastify</h4>
+                <ul class="uk-list uk-list-divider uk-text-small">
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> <strong>200+</strong> плагинов</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> fastify-swagger, jwt, multipart</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> sensible, rate-limit, helmet</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> автовалидация схем</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <i class="devicon-nodejs-plain colored" style="font-size: 32px;"></i>
+                <h4>Node.js</h4>
+                <ul class="uk-list uk-list-divider uk-text-small">
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> <strong>2M+</strong> пакетов npm</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> Любые библиотеки</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> child_process, cluster, stream</li>
+                    <li><i class="fa fa-check-square" aria-hidden="true"></i> crypto, fs, http</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Заключение и рекомендации -->
+<section class="uk-section uk-section-default conclusion-section">
+    <div class="uk-container">
+        <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Заключение</h2>
+
+        <div class="conclusion-card uk-card uk-card-body uk-text-center">
+            <div class="conclusion-icon uk-margin-medium-bottom">
+                <i class="fa-solid fa-compass"></i>
+            </div>
+
+            <p class="uk-text-lead uk-margin-medium">
+                Нет единого «лучшего» фреймворка — выбирайте инструмент под задачу.
+            </p>
+
+            <p class="uk-text-muted uk-margin-large-top">
+                Express остаётся королём для небольших проектов, Fastify — выбор для high-load,
+                NestJS — для enterprise-разработки, а чистый Node.js — для максимального контроля и обучения.
+            </p>
+
+            <hr class="uk-divider-icon uk-margin-large">
+
+            <div class="uk-grid-small uk-child-width-auto uk-flex-center" uk-grid>
+                <div><a href="express.html" class="conclusion-btn uk-button uk-button-small">Express →</a></div>
+                <div><a href="nestjs.html" class="conclusion-btn uk-button uk-button-small">NestJS →</a></div>
+                <div><a href="fastify.html" class="conclusion-btn uk-button uk-button-small">Fastify →</a></div>
+                <div><a href="nodejs.html" class="conclusion-btn uk-button uk-button-small">Node.js →</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+        <div><h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+            <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <div >
+                <a href="https://github.com/Hus1203" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="uk-icon-link" 
+                uk-icon="icon: github"
+                aria-label="GitHub">
+                </a>
+            </div>
+        </div>
+        <div><h4>Навигация</h4><ul class="uk-list uk-list-bullet"><li><a href="index.html">Главная</a></li><li><a href="comparison.html">Сравнение</a></li><li><a href="videos.html">Видеоуроки</a></li><li><a href="subscribe.html">Подписка</a></li></ul></div>
+        <div><h4>Ресурсы</h4><ul class="uk-list uk-list-bullet"><li><a href="https://nodejs.org" target="_blank">Node.js</a></li><li><a href="https://expressjs.com" target="_blank">Express</a></li><li><a href="https://nestjs.com" target="_blank">NestJS</a></li><li><a href="https://fastify.dev" target="_blank">Fastify</a></li></ul></div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center"><p class="uk-text-muted uk-text-small">© 2026 JavaScript Backend Frameworks. Все права защищены.</p></div>
+        <div class="uk-text-right@m uk-text-center"><a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a></div>
+    </div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Графики -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#f8fafc' : '#24272e';
+    const gridColor = isDark ? '#334155' : '#e2e8f0';
+    
+    const perfCtx = document.getElementById('performanceChart').getContext('2d');
+    new Chart(perfCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Node.js', 'Express', 'NestJS*', 'Fastify'],
+            datasets: [{
+                label: 'Запросов в секунду (тыс.)',
+                data: [30, 15, 20, 45],
+                backgroundColor: ['#339933', '#000000', '#E0234E', '#10b981'],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: { legend: { labels: { color: textColor } } },
+            scales: { y: { grid: { color: gridColor }, ticks: { color: textColor } }, x: { ticks: { color: textColor } } }
+        }
+    });
+    
+    const latCtx = document.getElementById('latencyChart').getContext('2d');
+    new Chart(latCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Node.js', 'Express', 'NestJS*', 'Fastify'],
+            datasets: [{
+                label: 'Задержка (мс) — меньше лучше',
+                data: [8, 12, 10, 5],
+                backgroundColor: ['#339933', '#000000', '#E0234E', '#10b981'],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: { legend: { labels: { color: textColor } } },
+            scales: { y: { grid: { color: gridColor }, ticks: { color: textColor } }, x: { ticks: { color: textColor } } }
+        }
+    });
+});
+</script>
+</body>
+</html>

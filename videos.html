@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Видеоуроки по JavaScript бэкенд фреймворкам: Node.js, Express, NestJS, Fastify. Курсы и уроки для разработчиков">
+<title>Видеоуроки | JS Backend Frameworks</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+        <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+        <span class="logo-text">JS Backend</span>
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav">
+        <ul class="nav-links">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="nodejs.html">Node.js</a></li>
+            <li><a href="express.html">Express</a></li>
+            <li><a href="nestjs.html">NestJS</a></li>
+            <li><a href="fastify.html">Fastify</a></li>
+            <li><a href="comparison.html">Сравнение</a></li>
+            <li><a href="videos.html" class="active">Видеоуроки</a></li>
+        </ul>
+        
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+    
+    <!-- Mobile Burger Button -->
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div id="mobile-overlay"></div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+<ul class="mobile-nav-list">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li>
+    <li><a href="express.html"><i class="devicon-express-original"></i> Express</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-plain"></i> NestJS</a></li>
+    <li>
+        <a href="fastify.html">
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" class="framework-logo logo-light">
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" class="framework-logo logo-dark">
+            Fastify
+        </a>
+    </li>
+    <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li class="active"><a href="videos.html"><i class="fa fa-youtube-play" style="font-size:48px;color:rgb(42, 111, 236);"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="*"><i class="fa-regular fa-envelope"></i>Наши соцсети</a></li>
+</ul>
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+        <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main>
+
+<!-- Hero Section -->
+<section class="video-page-header uk-section uk-section-large" aria-labelledby="videos-hero-heading">
+    <div class="uk-container">
+        <div class="uk-text-center">
+            <div class="uk-margin-medium-bottom">
+                <i class="fa-brands fa-youtube" style="font-size:48px;color:rgb(42, 111, 236);"></i>
+            </div>
+            <h1 id="videos-hero-heading" class="uk-heading-medium hero-title uk-margin-remove-bottom">
+                Видеоуроки по фреймворкам
+            </h1>
+            <p class="uk-text-lead uk-text-large uk-margin-medium-top uk-width-2-3@m uk-margin-auto">
+            Подборка качественных видеоуроков по Node.js, Express, NestJS и Fastify. 
+            От основ до продвинутых тем — учитесь с лучшими курсами
+            </p>
+            <div class="uk-margin-large-top">
+                <div class="uk-flex uk-flex-center uk-flex-wrap uk-gap-small">
+                    <a href="#nodejs-section" class="uk-button uk-button-default" uk-scroll>
+                        <i class="devicon-nodejs-plain"></i> Node.js
+                    </a>
+                    <a href="#express-section" class="uk-button uk-button-default" uk-scroll>
+                        <i class="devicon-express-original"></i> Express
+                    </a>
+                    <a href="#nestjs-section" class="uk-button uk-button-default" uk-scroll>
+                        <i class="devicon-nestjs-plain"></i> NestJS
+                    </a>
+                    <a href="#fastify-section" class="uk-button uk-button-default" uk-scroll>
+                        <i class="fa-brands fa-node-js"></i> Fastify
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== NODE.JS SECTION ==================== -->
+<section id="nodejs-section" class="section-anchor uk-section uk-section-large uk-section-default">
+    <div class="uk-container">
+        <div class="framework-section-header">
+            <i class="devicon-nodejs-plain colored" style="font-size: 3rem;"></i>
+            <h2>Node.js — видеоуроки</h2>
+        </div>
+        <p class="uk-text-lead uk-margin-medium-bottom">
+            Изучите среду выполнения JavaScript на сервере. Курсы для начинающих и опытных разработчиков.
+        </p>
+        
+        <div class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+            <!-- Node.js Видео 1 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-197942505&id=456239051&hash=f81652ed5eb6339a&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 2:45:30</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge node"><i class="devicon-nodejs-plain"></i> Node.js</div>
+                        <h3>Node.js с нуля — Полный курс 2025</h3>
+                        <p class="video-description">Изучите серверную разработку на JavaScript: модули, файловая система, HTTP-сервер, работа с базами данных и создание REST API.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 125k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 3.2k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Node.js Видео 2 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-145052891&id=456248833&hash=5adf014932b9b23a&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 1:52:15</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge node"><i class="devicon-nodejs-plain"></i> Node.js</div>
+                        <h3>Основы JavaScript для бэкенда</h3>
+                        <p class="video-description">Полный курс для начинающих разработчиков: асинхронность, промисы, async/await, Event Loop и работа с модулями в Node.js.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 89k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 2.1k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Node.js Видео 3 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-189497044&id=456239037&hash=98553378bfa92727&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 3:10:45</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge node"><i class="devicon-nodejs-plain"></i> Node.js</div>
+                        <h3>Node.js Advanced — Продвинутый курс</h3>
+                        <p class="video-description">Streams, кластеризация, worker threads, оптимизация производительности, создание микросервисов и деплой в продакшен.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 45k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 1.1k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== EXPRESS SECTION ==================== -->
+<section id="express-section" class="section-anchor uk-section uk-section-large uk-section-default videos-section">
+    <div class="uk-container">
+        <div class="framework-section-header">
+            <i class="devicon-express-original colored" style="font-size: 3rem;"></i>
+            <h2>Express.js — видеоуроки</h2>
+        </div>
+        <p class="uk-text-lead uk-margin-medium-bottom">
+            Самый популярный веб-фреймворк для Node.js. Быстрое создание API и веб-приложений.
+        </p>
+        
+        <div class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+            <!-- Express Видео 1 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-145052891&id=456248834&hash=6be1d2f8c7a4e9b3&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 2:30:00</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge express"><i class="devicon-express-original"></i> Express.js</div>
+                        <h3>Express.js — Полный курс</h3>
+                        <p class="video-description">Создание REST API с нуля: маршрутизация, middleware, обработка ошибок, авторизация JWT и подключение MongoDB.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 78k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 1.9k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Express Видео 2 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-217952086&id=456239018&hash=b34c8d7e1f5a2c9d&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 1:45:20</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge express"><i class="devicon-express-original"></i> Express.js</div>
+                        <h3>Express Middleware глубокое погружение</h3>
+                        <p class="video-description">Разбираем все типы middleware, создаём кастомные решения, логирование, сжатие, CORS и защиту приложений.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 34k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 890</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Express Видео 3 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-197942505&id=456239052&hash=a7c3e5f8b2d1a4e6&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 2:15:40</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge express"><i class="devicon-express-original"></i> Express.js</div>
+                        <h3>REST API на Express + TypeScript</h3>
+                        <p class="video-description">Создаём типобезопасное API с TypeScript, валидацией данных, документацией Swagger и тестированием.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 52k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 1.3k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== NESTJS SECTION ==================== -->
+<section id="nestjs-section" class="section-anchor uk-section uk-section-large uk-section-default">
+    <div class="uk-container">
+        <div class="framework-section-header">
+            <i class="devicon-nestjs-plain colored" style="font-size: 3rem;"></i>
+            <h2>NestJS — видеоуроки</h2>
+        </div>
+        <p class="uk-text-lead uk-margin-medium-bottom">
+            Прогрессивный TypeScript-фреймворк для корпоративных приложений с архитектурой Angular.
+        </p>
+        
+        <div class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+            <!-- NestJS Видео 1 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-189497044&id=456239037&hash=98553378bfa92727&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 3:20:15</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge nest"><i class="devicon-nestjs-plain"></i> NestJS</div>
+                        <h3>Курс NestJS с нуля</h3>
+                        <p class="video-description">Введение в NestJS, установка, модули, контроллеры, провайдеры, работа с TypeORM и создание полноценного приложения.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 67k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 2.4k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NestJS Видео 2 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-145052891&id=456248835&hash=8d4f2a7c1e6b3d9f&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 1:55:30</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge nest"><i class="devicon-nestjs-plain"></i> NestJS</div>
+                        <h3>NestJS Guards, Interceptors, Pipes</h3>
+                        <p class="video-description">Продвинутые концепции: защита маршрутов, перехватчики, трансформация данных и валидация в NestJS.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 28k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 720</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NestJS Видео 3 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-197942505&id=456239053&hash=1e5c9a3f7b2d8e4c&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 2:40:00</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge nest"><i class="devicon-nestjs-plain"></i> NestJS</div>
+                        <h3>Микросервисы на NestJS</h3>
+                        <p class="video-description">Архитектура микросервисов, RabbitMQ, Kafka, gRPC, API Gateway и развертывание в Docker.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 41k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 1.0k</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FASTIFY SECTION ==================== -->
+<section id="fastify-section" class="section-anchor uk-section uk-section-large uk-section-default videos-section">
+    <div class="uk-container">
+        <div class="framework-section-header">
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" style="height: 48px; width: auto;" class="logo-light">
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" style="height: 48px; width: auto;" class="logo-dark">
+            <h2>Fastify — видеоуроки</h2>
+        </div>
+        <p class="uk-text-lead uk-margin-medium-bottom">
+            Самый быстрый веб-фреймворк для Node.js с отличной производительностью и низкими накладными расходами.
+        </p>
+        
+        <div class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+            <!-- Fastify Видео 1 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-217952086&id=456239017&hash=a9aa224724900782&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 1:25:45</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge fastify"><img src="images/Fastify_923ec1d585.png" style="height: 16px; width: auto;"> Fastify</div>
+                        <h3>Установка окружения Fastify</h3>
+                        <p class="video-description">Настройка окружения для Fastify приложения, первый сервер, маршрутизация и базовые плагины.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 23k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 560</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fastify Видео 2 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-145052891&id=456248836&hash=2c7e9a5f3d1b8e6a&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 2:05:10</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge fastify"><img src="images/Fastify_923ec1d585.png" style="height: 16px; width: auto;"> Fastify</div>
+                        <h3>Fastify — Высокая производительность</h3>
+                        <p class="video-description">Почему Fastify быстрее Express: схема валидации, сериализация JSON, оптимизация и сравнение бенчмарков.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 31k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 890</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fastify Видео 3 -->
+            <div>
+                <div class="video-grid-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://vkvideo.ru/video_ext.php?oid=-189497044&id=456239038&hash=4d8f2a7c1e6b3d9a&hd=4" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <span class="video-duration"><i class="fa-regular fa-clock"></i> 1:50:30</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="framework-badge fastify"><img src="images/Fastify_923ec1d585.png" style="height: 16px; width: auto;"> Fastify</div>
+                        <h3>Плагины и экосистема Fastify</h3>
+                        <p class="video-description">Создание собственных плагинов, использование готовых решений, авторизация, rate limiting и Swagger документация.</p>
+                        <div class="video-meta">
+                            <span><i class="fa-regular fa-eye"></i> 19k просмотров</span>
+                            <span><i class="fa-regular fa-thumbs-up"></i> 480</span>
+                            <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Дополнительные ресурсы -->
+<section class="uk-section uk-section-large uk-section-default">
+    <div class="uk-container uk-text-center">
+        <div class="uk-card uk-card-default uk-card-body uk-padding-large uk-border-rounded" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);">
+            <i class="fa-brands fa-youtube" style="font-size: 3rem; color:rgb(42, 111, 236)"></i>
+            <h3 class="uk-margin-small-top">Больше видео на нашем канале</h3>
+            <p class="uk-text-muted uk-width-2-3@m uk-margin-auto">Подписывайтесь, чтобы не пропустить новые уроки по современным JavaScript фреймворкам</p>
+            <div class="uk-margin-medium-top">
+                <a href="#" class="uk-button uk-button-primary uk-button-large">
+                    <i class="fa-brands fa-youtube uk-margin-small-right"></i>
+                    Перейти на канал
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+        <div>
+            <h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+            <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <div>
+                <a href="https://github.com/Hus1203" target="_blank" rel="noopener noreferrer" class="uk-icon-link" uk-icon="icon: github" aria-label="GitHub"></a>
+            </div>
+        </div>
+        <div>
+            <h4>Навигация</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="comparison.html">Сравнение</a></li>
+                <li><a href="videos.html">Видеоуроки</a></li>
+                <li><a href="subscribe.html">Наши соцсети</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Ресурсы</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
+                <li><a href="https://expressjs.com" target="_blank">Express</a></li>
+                <li><a href="https://nestjs.com" target="_blank">NestJS</a></li>
+                <li><a href="https://fastify.dev" target="_blank">Fastify</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center">
+            <p class="uk-text-muted uk-text-small">© 2026 JavaScript Backend Frameworks. Все права защищены.</p>
+        </div>
+        <div class="uk-text-right@m uk-text-center">
+            <a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

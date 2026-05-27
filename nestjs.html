@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Описание и заголовок для NestJS -->
+<meta name="description" content="Полное руководство по NestJS: прогрессивный Node.js фреймворк для создания эффективных и масштабируемых серверных приложений.">
+<title>NestJS — Прогрессивный фреймворк | JS Backend Frameworks</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== HEADER (как на главной) ==================== -->
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+    <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+    <span class="logo-text">JS Backend</span>
+    </a>
+    <div class="desktop-nav">
+    <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="nodejs.html">Node.js</a></li> 
+        <li><a href="express.html">Express</a></li>
+        <li><a href="nestjs.html" class="active">NestJS</a></li>
+        <li><a href="fastify.html">Fastify</a></li>
+        <li><a href="comparison.html">Сравнение</a></li>
+        <li><a href="videos.html">Видеоуроки</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </div>
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+</header>
+
+<!-- ==================== MOBILE MENU ==================== -->
+<div id="mobile-overlay"></div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+    <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+<ul class="mobile-nav-list">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li>
+    <li><a href="express.html"><i class="devicon-express-original"></i> Express</a></li>
+    <li class="active"><a href="nestjs.html"><i class="devicon-nestjs-plain"></i> NestJS</a></li>
+    <li>
+        <a href="fastify.html">
+            <!-- Светлая версия (показывается в light теме) -->
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" class="framework-logo logo-light">
+            <!-- Тёмная версия (показывается в dark теме) -->
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" class="framework-logo logo-dark">
+            Fastify
+        </a>
+    </li>
+    <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Наши соцсети</a></li>
+</ul>
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+    <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<!-- ==================== ОСНОВНОЕ СОДЕРЖАНИЕ СТРАНИЦЫ NESTJS ==================== -->
+<main>
+
+<section class="uk-section uk-section-large hero-section" aria-labelledby="framework-hero-heading">
+    <div class="uk-container">
+    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-1-2@m">
+        <!-- Заголовок и описание NestJS -->
+        <h1 id="framework-hero-heading" class="hero-title uk-heading-medium uk-margin-remove-bottom">
+            NestJS
+        </h1>
+        <p class="uk-text-lead uk-text-large uk-margin-medium-top uk-margin-medium-bottom">
+            Прогрессивный Node.js фреймворк для создания эффективных, надёжных и масштабируемых серверных приложений. Вдохновлён архитектурой Angular.
+        </p>
+        <div class="uk-margin-mid-top">
+            <a href="#quick-start" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">
+            <i class="fa-solid fa-play uk-margin-small-right"></i>
+            Быстрый старт
+            </a>
+            <a href="comparison.html" class="uk-button uk-button-default uk-button-large">
+            <i class="fa-solid fa-scale-balanced uk-margin-small-right"></i>
+            Сравнить
+            </a>
+        </div>
+        </div>
+        <div class="uk-width-1-2@m uk-text-center">
+        <!-- ========== ЛОГОТИП NESTJS (путь можно заменить) ========== -->
+        <img src="images/NestJS.webp" 
+                alt="NestJS — официальный логотип" 
+                class="responsive-img shadow-lg framework-hero-logo"
+                width="500"
+                height="400"
+                loading="lazy">
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Быстрые факты / Характеристики -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="framework-icon">
+                    <i class="devicon-nestjs-plain" style="font-size: 48px;"></i>
+                </div>
+                <h4>Версия</h4>
+                <p class="uk-text-muted">10.x (стабильная)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <h4>Еженедельные загрузки</h4>
+                <p class="uk-text-muted">~2.5 млн (npm)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <h4>Производительность</h4>
+                <p class="uk-text-muted">~20k req/s (с Fastify адаптером)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
+                    <i class="fa-regular fa-building"></i>
+                </div>
+                <h4>Используют</h4>
+                <p class="uk-text-muted">PayPal, Roche, Adidas</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Описание и ключевые особенности -->
+<section class="uk-section uk-section-large">
+    <div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <h2 class="uk-heading-bullet">Что такое NestJS?</h2>
+            <p class="uk-text-lead">NestJS — это фреймворк для создания масштабируемых серверных приложений на Node.js с использованием TypeScript (и чистой JavaScript).</p>
+            <p>Он сочетает в себе элементы ООП, функционального и реактивного программирования. Под капотом NestJS использует Express или Fastify (через адаптер) и предоставляет архитектурные паттерны, вдохновлённые Angular: модули, контроллеры, провайдеры и внедрение зависимостей.</p>
+            <p>NestJS делает разработку на Node.js структурированной, удобной для тестирования и сопровождения, идеально подходит для enterprise-проектов и микросервисов.</p>
+        </div>
+        <div>
+            <!-- Второе фото для иллюстрации концепции (путь можно заменить) -->
+            <img src="images/NestJS architecture.webp" 
+                 alt="Архитектура NestJS приложения" 
+                 class="responsive-img shadow-lg"
+                 loading="lazy">
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Ключевые особенности (список с иконками) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Ключевые особенности</h2>
+    <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <h4>Модульная архитектура</h4>
+                <p class="uk-text-muted">Организация кода в модули (Modules), что упрощает масштабирование и переиспользование.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-syringe"></i></div>
+                <h4>Внедрение зависимостей</h4>
+                <p class="uk-text-muted">Мощный DI-контейнер, вдохновлённый Angular, для управления зависимостями.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
+                <h4>TypeScript first</h4>
+                <p class="uk-text-muted">Полная поддержка TypeScript из коробки с декораторами и строгой типизацией.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h4>Микросервисы</h4>
+                <p class="uk-text-muted">Встроенная поддержка микросервисной архитектуры и событийного обмена.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h4>Производительность</h4>
+                <p class="uk-text-muted">Возможность использовать Fastify под капотом для максимальной скорости.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-shield-alt"></i></div>
+                <h4>Графики и WebSockets</h4>
+                <p class="uk-text-muted">Легкая интеграция GraphQL, WebSockets, gRPC и других протоколов.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Пример кода (Быстрый старт) -->
+<section id="quick-start" class="uk-section uk-section-large uk-section-secondary uk-preserve-color">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Быстрый старт с NestJS</h2>
+    <div class="uk-card uk-card-default uk-card-body code-example-card">
+        <h3 class="uk-card-title">Контроллер, модуль и запуск за 5 минут</h3>
+        <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 12px; overflow-x: auto;">
+<code style="color: var(--text-primary); font-family: 'Fira Code', monospace;">
+<span style="color: #f59e0b;">import</span> { Controller, Get, Post, Body, Injectable, Module, NestFactory } <span style="color: #f59e0b;">from</span> <span style="color: #10b981;">'@nestjs/common'</span>;
+
+<span style="color: #06b6d4;">// Провайдер (сервис)</span>
+<span style="color: #f59e0b;">@Injectable</span>()
+<span style="color: #f59e0b;">export class</span> AppService {
+  getHello(): <span style="color: #f59e0b;">string</span> {
+    <span style="color: #f59e0b;">return</span> <span style="color: #10b981;">'Hello from NestJS!'</span>;
+  }
+}
+
+<span style="color: #06b6d4;">// Контроллер</span>
+<span style="color: #f59e0b;">@Controller</span>()
+<span style="color: #f59e0b;">export class</span> AppController {
+  <span style="color: #f59e0b;">constructor</span>(<span style="color: #f59e0b;">private readonly</span> appService: AppService) {}
+
+  <span style="color: #f59e0b;">@Get</span>()
+  getHello(): <span style="color: #f59e0b;">string</span> {
+    <span style="color: #f59e0b;">return</span> <span style="color: #66d9ef;">this</span>.appService.getHello();
+  }
+
+  <span style="color: #f59e0b;">@Post</span>(<span style="color: #10b981;">'/data'</span>)
+  createData(<span style="color: #f59e0b;">@Body</span>() body: <span style="color: #f59e0b;">any</span>) {
+    <span style="color: #f59e0b;">return</span> { received: body };
+  }
+}
+
+<span style="color: #06b6d4;">// Модуль</span>
+<span style="color: #f59e0b;">@Module</span>({
+  controllers: [AppController],
+  providers: [AppService],
+})
+<span style="color: #f59e0b;">export class</span> AppModule {}
+
+<span style="color: #06b6d4;">// Запуск приложения</span>
+<span style="color: #f59e0b;">async function</span> bootstrap() {
+  <span style="color: #f59e0b;">const</span> app = <span style="color: #f59e0b;">await</span> NestFactory.create(AppModule);
+  <span style="color: #f59e0b;">await</span> app.listen(3000);
+}
+bootstrap();
+</code>
+        </pre>
+        <div class="uk-margin-medium-top">
+            <a href="https://docs.nestjs.com/" class="uk-button uk-button-primary">Документация NestJS</a>
+            <a href="https://github.com/nestjs/nest" class="uk-button uk-button-default uk-margin-small-left"> <i class="devicon-github-original uk-margin-small-right"></i>GitHub репозиторий</a>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Преимущества и недостатки -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Плюсы и минусы</h2>
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <div class="feature-card" style="border-left: 4px solid #10b981;">
+                <h3><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Преимущества</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>🏗️ <strong>Структурированность</strong> — готовые архитектурные паттерны (модули, контроллеры, сервисы)</li>
+                    <li>📘 <strong>TypeScript из коробки</strong> — декораторы, метаданные, отличная типизация</li>
+                    <li>🧩 <strong>Внедрение зависимостей</strong> — облегчает тестирование и переиспользование кода</li>
+                    <li>🔌 <strong>Экосистема</strong> — официальные модули для GraphQL, WebSockets, микросервисов</li>
+                    <li>💼 <strong>Enterprise-ready</strong> — отличный выбор для крупных команд и проектов</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card" style="border-left: 4px solid #ef4444;">
+                <h3><i class="fa-solid fa-circle-exclamation" style="color: #ef4444;"></i> Недостатки</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>📈 <strong>Кривая обучения</strong> — новичкам может показаться сложным из-за концепций (модули, декораторы, DI)</li>
+                    <li>🏋️ <strong>Структура требует дисциплины</strong> — не подходит для мельчайших API, где нужен минимум кода</li>
+                    <li>⚙️ <strong>Более тяжеловесный</strong> — по сравнению с Express/Koa требует больше кода и конфигурации</li>
+                    <li>🐢 <strong>Медленнее чистой альтернативы</strong> — при использовании Express адаптера уступает Fastify по скорости</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Часто задаваемые вопросы (FAQ) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Часто задаваемые вопросы</h2>
+    <div uk-accordion>
+        <div>
+            <a class="uk-accordion-title" href="#">NestJS подходит для маленьких проектов?</a>
+            <div class="uk-accordion-content">
+                <p>Да, но для микросервисов или небольших API он может быть избыточным. Если нужна быстрая разработка прототипа, Express или Fastify будут проще. Однако NestJS отлично масштабируется, и начальные инвестиции окупаются при росте проекта.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Могу ли я использовать NestJS с Fastify вместо Express?</a>
+            <div class="uk-accordion-content">
+                <p>Да! NestJS имеет адаптер для Fastify. Вы можете переключиться, вызвав <code>NestFactory.create&lt;NestFastifyApplication&gt;(AppModule, new FastifyAdapter())</code>. Это повысит производительность вашего приложения.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Что такое декораторы в NestJS и зачем они нужны?</a>
+            <div class="uk-accordion-content">
+                <p>Декораторы — это специальные аннотации (например, <code>@Controller()</code>, <code>@Get()</code>, <code>@Injectable()</code>), которые добавляют метаданные классам и методам. Они позволяют NestJS определять маршруты, внедрять зависимости и настраивать поведение приложения декларативно.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+        <div>
+            <h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+            <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <a href="https://github.com/Hus1203" target="_blank" rel="noopener noreferrer" class="uk-icon-link" uk-icon="icon: github" aria-label="GitHub"></a>
+        </div>
+        <div>
+            <h4>Навигация</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="comparison.html">Сравнение</a></li>
+                <li><a href="videos.html">Видеоуроки</a></li>
+                <li><a href="subscribe.html">Наши соцсети</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Ресурсы</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
+                <li><a href="https://expressjs.com" target="_blank">Express</a></li>
+                <li><a href="https://nestjs.com" target="_blank">NestJS</a></li>
+                <li><a href="https://fastify.dev" target="_blank">Fastify</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center">
+            <p class="uk-text-muted uk-text-small">© 2026 JavaScript Backend Frameworks. Все права защищены.</p>
+        </div>
+        <div class="uk-text-right@m uk-text-center">
+            <a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

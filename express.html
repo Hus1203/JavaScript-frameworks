@@ -45,6 +45,7 @@
         <li><a href="nestjs.html">NestJS</a></li>
         <li><a href="fastify.html">Fastify</a></li>
         <li><a href="comparison.html">Сравнение</a></li>
+        <li><a href="videos.html">Видеоуроки</a></li>
     </ul>
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
         <i class="fa-solid fa-moon"></i>
@@ -69,13 +70,21 @@
     <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
     <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li> <!-- Здесь меняем active -->
     <li class="active"><a href="express.html"><i class="devicon-express-original" ></i> Express</a></li>
-    <li><a href="nestjs.html"><i class="devicon-nestjs-original"></i> NestJS</a></li>
-    <li><a href="fastify.html"><i class="devicon-fastify-plain"></i> Fastify</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-plain"></i> NestJS</a></li>
+    <li>
+        <a href="fastify.html">
+            <!-- Светлая версия (показывается в light теме) -->
+            <img src="images/Fastify_923ec1d585.png" alt="Fastify" class="framework-logo logo-light">
+            <!-- Тёмная версия (показывается в dark теме) -->
+            <img src="images/Fastify_923ec1d585-dark.png" alt="Fastify" class="framework-logo logo-dark">
+            Fastify
+        </a>
+    </li>
     <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
     <li class="mobile-divider"></li>
     <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
     <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
-    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Подписка</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Наши соцсети</a></li>
 </ul>
 <div class="mobile-theme-wrapper">
     <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
@@ -87,7 +96,6 @@
 <!-- ==================== ОСНОВНОЕ СОДЕРЖАНИЕ СТРАНИЦЫ ФРЕЙМВОРКА ==================== -->
 <main>
 
-<!-- Hero секция с фото фреймворка -->
 <section class="uk-section uk-section-large hero-section" aria-labelledby="framework-hero-heading">
     <div class="uk-container">
     <div class="uk-grid-medium uk-flex-middle" uk-grid>
@@ -288,7 +296,7 @@ app.listen(PORT, () =&gt; {
     <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Плюсы и минусы</h2>
     <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
         <div>
-            <div class="uk-card uk-card-default uk-card-body" style="border-left: 4px solid #10b981;">
+            <div class="feature-card" style="border-left: 4px solid #10b981;">
                 <h3><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Преимущества</h3>
                 <ul class="uk-list uk-list-bullet">
                     <li>🔥 <strong>Огромное сообщество</strong> — легко найти решение любой проблемы</li>
@@ -300,7 +308,7 @@ app.listen(PORT, () =&gt; {
             </div>
         </div>
         <div>
-            <div class="uk-card uk-card-default uk-card-body" style="border-left: 4px solid #ef4444;">
+            <div class="feature-card" style="border-left: 4px solid #ef4444;">
                 <h3><i class="fa-solid fa-circle-exclamation" style="color: #ef4444;"></i> Недостатки</h3>
                 <ul class="uk-list uk-list-bullet">
                     <li>🐌 <strong>Медленнее Fastify</strong> — для high-load проектов может уступать в производительности</li>
@@ -358,7 +366,7 @@ app.listen(PORT, () =&gt; {
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="comparison.html">Сравнение</a></li>
                 <li><a href="videos.html">Видеоуроки</a></li>
-                <li><a href="subscribe.html">Подписка</a></li>
+                <li><a href="subscribe.html">Наши соцсети</a></li>
             </ul>
         </div>
         <div>
