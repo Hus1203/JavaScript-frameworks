@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Описание и заголовок нужно изменить для каждого фреймворка -->
+<meta name="description" content="Полное руководство по Express.js: маршрутизация, middleware, создание API и лучшие практики">
+<title>Express.js — Полное руководство | JS Backend Frameworks</title>
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/css/uikit.min.css" />
+
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Devicon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== HEADER (как на главной) ==================== -->
+<header class="site-header">
+<div class="header-container">
+    <a class="site-logo" href="index.html" aria-label="JS Backend - на главную">
+    <i class="fa-brands fa-js-square" style="color: #f7df1e;"></i>
+    <span class="logo-text">JS Backend</span>
+    </a>
+    <div class="desktop-nav">
+    <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="nodejs.html" >Node.js</a></li> 
+        <li><a href="express.html" class="active">Express</a></li>
+        <li><a href="nestjs.html">NestJS</a></li>
+        <li><a href="fastify.html">Fastify</a></li>
+        <li><a href="comparison.html">Сравнение</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </div>
+    <button id="burger-btn" class="burger-btn mobile-only" aria-label="Открыть меню" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+</header>
+
+<!-- ==================== MOBILE MENU (как на главной) ==================== -->
+<div id="mobile-overlay"></div>
+<div id="mobile-menu">
+<div class="mobile-menu-header">
+    <span>Меню</span>
+    <button id="close-mobile-menu" class="close-menu-btn" aria-label="Закрыть меню">
+    <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+<ul class="mobile-nav-list">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i> Главная</a></li>
+    <li><a href="nodejs.html"><i class="devicon-nodejs-plain"></i> Node.js</a></li> <!-- Здесь меняем active -->
+    <li class="active"><a href="express.html"><i class="devicon-express-original" ></i> Express</a></li>
+    <li><a href="nestjs.html"><i class="devicon-nestjs-original"></i> NestJS</a></li>
+    <li><a href="fastify.html"><i class="devicon-fastify-plain"></i> Fastify</a></li>
+    <li><a href="comparison.html"><i class="fa-solid fa-scale-balanced"></i> Сравнение</a></li>
+    <li class="mobile-divider"></li>
+    <li><a href="videos.html"><i class="fa-brands fa-youtube"></i> Видеоуроки</a></li>
+    <li><a href="resources.html"><i class="fa-solid fa-book"></i> Ресурсы</a></li>
+    <li><a href="subscribe.html"><i class="fa-regular fa-envelope"></i> Подписка</a></li>
+</ul>
+<div class="mobile-theme-wrapper">
+    <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-btn">
+    <i class="fa-solid fa-moon"></i> Тёмная тема
+    </button>
+</div>
+</div>
+
+<!-- ==================== ОСНОВНОЕ СОДЕРЖАНИЕ СТРАНИЦЫ ФРЕЙМВОРКА ==================== -->
+<main>
+
+<!-- Hero секция с фото фреймворка -->
+<section class="uk-section uk-section-large hero-section" aria-labelledby="framework-hero-heading">
+    <div class="uk-container">
+    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-1-2@m">
+        <!-- Заголовок и описание фреймворка (меняем) -->
+        <h1 id="framework-hero-heading" class="hero-title uk-heading-medium uk-margin-remove-bottom">
+            Express.js
+        </h1>
+        <p class="uk-text-lead uk-text-large uk-margin-medium-top uk-margin-medium-bottom">
+            Минималистичный, гибкий и быстрый веб-фреймворк для Node.js. 
+            Идеальный выбор для создания REST API, веб-приложений и микросервисов.
+        </p>
+        <div class="uk-margin-mid-top">
+            <a href="#quick-start" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">
+            <i class="fa-solid fa-play uk-margin-small-right"></i>
+            Быстрый старт
+            </a>
+            <a href="comparison.html" class="uk-button uk-button-default uk-button-large">
+            <i class="fa-solid fa-scale-balanced uk-margin-small-right"></i>
+            Сравнить
+            </a>
+        </div>
+        </div>
+        <div class="uk-width-1-2@m uk-text-center">
+        <!-- ========== ЗДЕСЬ ВСТАВЛЯЕМ ФОТО / ЛОГОТИП ФРЕЙМВОРКА ========== -->
+        <img src="images/express-logo.png" 
+                alt="Express.js — официальный логотип" 
+                class="responsive-img shadow-lg framework-hero-logo"
+                width="500"
+                height="400"
+                loading="lazy">
+        <!-- Альтернативный вариант: иконка из Devicon -->
+        <!-- <i class="devicon-express-original colored" style="font-size: 200px;"></i> -->
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Быстрые факты / Характеристики -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="framework-icon">
+                    <i class="devicon-express-original" style="font-size: 48px;"></i>
+                </div>
+                <h4>Версия</h4>
+                <p class="uk-text-muted">4.18.x (стабильная)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <h4>Еженедельные загрузки</h4>
+                <p class="uk-text-muted">~20 млн (npm)</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <h4>Производительность</h4>
+                <p class="uk-text-muted">~15k req/s</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card uk-text-center">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
+                    <i class="fa-regular fa-building"></i>
+                </div>
+                <h4>Используют</h4>
+                <p class="uk-text-muted">IBM, Uber, Twitter</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Описание и ключевые особенности -->
+<section class="uk-section uk-section-large">
+    <div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <h2 class="uk-heading-bullet">Что такое Express.js?</h2>
+            <p class="uk-text-lead">Express — это самый популярный веб-фреймворк для Node.js, который предоставляет минималистичный интерфейс для создания серверных приложений.</p>
+            <p>Он не навязывает архитектуру, давая разработчику полную свободу. Express лежит в основе многих других фреймворков (например, NestJS использует его под капотом по умолчанию) и является <strong>де-факто стандартом</strong> для Node.js.</p>
+            <p>С Express вы легко настроите маршруты, middleware для обработки запросов, подключите шаблонизаторы и создадите RESTful API.</p>
+        </div>
+        <div>
+            <!-- Второе фото для иллюстрации концепции -->
+            <img src="images/Express.js architecture.webp" 
+                 alt="Архитектура Express.js приложения" 
+                 class="responsive-img shadow-lg"
+                 loading="lazy">
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Ключевые особенности (список с иконками) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Ключевые особенности</h2>
+    <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-route"></i></div>
+                <h4>Гибкая маршрутизация</h4>
+                <p class="uk-text-muted">Мощная система маршрутизации с поддержкой параметров, регулярных выражений и группировки.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
+                <h4>Middleware</h4>
+                <p class="uk-text-muted">Огромная экосистема middleware для логирования, аутентификации, парсинга тел запросов и CORS.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-code-branch"></i></div>
+                <h4>Шаблонизаторы</h4>
+                <p class="uk-text-muted">Интеграция с Pug, EJS, Handlebars и другими движками для серверного рендеринга.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-regular fa-file-code"></i></div>
+                <h4>REST API</h4>
+                <p class="uk-text-muted">Идеальный инструмент для быстрого создания RESTful сервисов любой сложности.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-database"></i></div>
+                <h4>Базы данных</h4>
+                <p class="uk-text-muted">Легко подключается к MongoDB (Mongoose), PostgreSQL (Sequelize/Prisma) и другим БД.</p>
+            </div>
+        </div>
+        <div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-regular fa-clock"></i></div>
+                <h4>Быстрый старт</h4>
+                <p class="uk-text-muted">Минимальный порог входа: сервер на Express можно написать буквально за 5 минут.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Пример кода (Быстрый старт) -->
+<section id="quick-start" class="uk-section uk-section-large uk-section-secondary uk-preserve-color">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Быстрый старт с Express</h2>
+    <div class="uk-card uk-card-default uk-card-body code-example-card">
+        <h3 class="uk-card-title">Базовый сервер за 5 минут</h3>
+        <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 12px; overflow-x: auto;">
+<code style="color: var(--text-primary); font-family: 'Fira Code', monospace;">
+<span style="color: #f59e0b;">const</span> express = require(<span style="color: #10b981;">'express'</span>);
+<span style="color: #f59e0b;">const</span> app = express();
+<span style="color: #f59e0b;">const</span> PORT = process.env.PORT || 3000;
+
+<span style="color: #06b6d4;">// Middleware для парсинга JSON</span>
+app.use(express.json());
+
+<span style="color: #06b6d4;">// Простой GET-маршрут</span>
+app.get(<span style="color: #10b981;">'/'</span>, (req, res) =&gt; {
+    res.json({ message: <span style="color: #10b981;">'Hello from Express.js!'</span> });
+});
+
+<span style="color: #06b6d4;">// POST-маршрут для получения данных</span>
+app.post(<span style="color: #10b981;">'/api/data'</span>, (req, res) =&gt; {
+    console.log(req.body);
+    res.status(201).json({ received: req.body });
+});
+
+<span style="color: #06b6d4;">// Запуск сервера</span>
+app.listen(PORT, () =&gt; {
+    console.log(<span style="color: #10b981;">`Server is running on port ${PORT}`</span>);
+});
+</code>
+        </pre>
+        <div class="uk-margin-medium-top">
+            <a href="https://expressjs.com/en/api/" class="uk-button uk-button-primary">Документация Express</a>
+            <a href="https://github.com/expressjs/express/tree/master?files=1" class="uk-button uk-button-default uk-margin-small-left"> <i class="devicon-github-original uk-margin-small-right"></i>GitHub репозиторий</a>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Преимущества и недостатки -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Плюсы и минусы</h2>
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body" style="border-left: 4px solid #10b981;">
+                <h3><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Преимущества</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>🔥 <strong>Огромное сообщество</strong> — легко найти решение любой проблемы</li>
+                    <li>⚡ <strong>Минимализм и гибкость</strong> — никакой магии, полный контроль</li>
+                    <li>📦 <strong>Экосистема</strong> — тысячи готовых middleware и интеграций</li>
+                    <li>📚 <strong>Простота изучения</strong> — идеальный старт для новичков в Node.js</li>
+                    <li>🚀 <strong>Стабильность</strong> — используется годами в production миллионами компаний</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body" style="border-left: 4px solid #ef4444;">
+                <h3><i class="fa-solid fa-circle-exclamation" style="color: #ef4444;"></i> Недостатки</h3>
+                <ul class="uk-list uk-list-bullet">
+                    <li>🐌 <strong>Медленнее Fastify</strong> — для high-load проектов может уступать в производительности</li>
+                    <li>🏗️ <strong>Отсутствие структуры</strong> — для больших проектов нужна самодисциплина</li>
+                    <li>🔄 <strong>Callback-стиль</strong> — базовая архитектура не рассчитана на async/await из коробки</li>
+                    <li>🛡️ <strong>Слабая типизация</strong> — в отличие от NestJS, TypeScript поддержка не встроена</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Часто задаваемые вопросы (FAQ) -->
+<section class="uk-section uk-section-default">
+    <div class="uk-container">
+    <h2 class="uk-heading-bullet uk-text-center uk-margin-large-bottom">Часто задаваемые вопросы</h2>
+    <div uk-accordion>
+        <div>
+            <a class="uk-accordion-title" href="#">Чем Express отличается от чистого Node.js?</a>
+            <div class="uk-accordion-content">
+                <p>Чистый Node.js требует ручной обработки маршрутов, парсинга тела запроса и многих других низкоуровневых задач. Express предоставляет удобную абстракцию: маршрутизацию, middleware, утилиты для работы с req/res — это ускоряет разработку в разы.</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Express подходит для больших enterprise-проектов?</a>
+            <div class="uk-accordion-content">
+                <p>Да, но требует продуманной архитектуры. Многие компании используют Express в микросервисной архитектуре. Однако для крупных монолитов часто выбирают более структурированные фреймворки, например NestJS (который, кстати, может работать поверх Express).</p>
+            </div>
+        </div>
+        <div>
+            <a class="uk-accordion-title" href="#">Как улучшить производительность Express?</a>
+            <div class="uk-accordion-content">
+                <p>Используйте кластеризацию (модуль cluster), кеширование (Redis), сжимайте ответы (middleware compression), подключайте reverse-proxy (Nginx) и рассмотрите миграцию на Fastify, если узкое место — сам фреймворк.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER (как на главной) ==================== -->
+<footer class="uk-section uk-section-large" role="contentinfo">
+<div class="uk-container">
+    <div class="uk-grid-large uk-child-width-1-3@m" uk-grid>
+        <div>
+            <h4><i class="fa-brands fa-js-square uk-margin-small-right"></i>JS Backend</h4>
+            <p class="uk-text-muted">Образовательный проект о современных JavaScript-фреймворках для серверной разработки.</p>
+            <a href="https://github.com/Hus1203" target="_blank" rel="noopener noreferrer" class="uk-icon-link" uk-icon="icon: github" aria-label="GitHub"></a>
+        </div>
+        <div>
+            <h4>Навигация</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="comparison.html">Сравнение</a></li>
+                <li><a href="videos.html">Видеоуроки</a></li>
+                <li><a href="subscribe.html">Подписка</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Ресурсы</h4>
+            <ul class="uk-list uk-list-bullet">
+                <li><a href="https://nodejs.org" target="_blank">Node.js</a></li>
+                <li><a href="https://expressjs.com" target="_blank">Express</a></li>
+                <li><a href="https://nestjs.com" target="_blank">NestJS</a></li>
+                <li><a href="https://fastify.dev" target="_blank">Fastify</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="uk-divider-icon uk-margin-large-top">
+    <div class="uk-grid-medium uk-child-width-1-2@m uk-flex-middle" uk-grid>
+        <div class="uk-text-left@m uk-text-center">
+            <p class="uk-text-muted uk-text-small">© 2026 JavaScript Backend Frameworks. Все права защищены.</p>
+        </div>
+        <div class="uk-text-right@m uk-text-center">
+            <a href="https://allo.tochka.com/privacy-policy" class="uk-text-muted uk-text-small">Политика конфиденциальности</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.26/dist/js/uikit-icons.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -444,6 +444,14 @@ body.menu-open {
   transition: all var(--transition-fast);
 }
 
+.mobile-nav-list li a img {
+    width: 1.25rem;      /* ~20px — как у иконок devicon */
+    height: 1.25rem;
+    object-fit: contain; /* Сохраняет пропорции */
+    flex-shrink: 0;      /* Не сжимается в узком контейнере */
+    display: inline-block;
+}
+
 .mobile-nav-list li a:hover,
 .mobile-nav-list li.active a {
   background-color: var(--bg-tertiary);
@@ -1213,3 +1221,19 @@ footer {
     padding: var(--spacing-md);
   }
 }
+
+/* ==================== FASTIFY LOGO THEME SWITCH ==================== */
+.framework-logo {
+    width: 1.25rem;
+    height: 1.25rem;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Светлая тема (по умолчанию) */
+.logo-light { display: inline-block !important; }
+.logo-dark  { display: none !important; }
+
+/* Тёмная тема */
+[data-theme="dark"] .logo-light { display: none !important; }
+[data-theme="dark"] .logo-dark  { display: inline-block !important; }
